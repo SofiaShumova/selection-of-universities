@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    height: 70px;
+    width: 70px;
+}
+
+.header__nav {
+    border-left: 1px solid black;
+    padding: 10px;
+}
+
+.header__link {
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+}
+
+.header__link_selected {
+    font-weight: 600;
+}
+
+.header__link:hover {
+    text-decoration: underline;
+}

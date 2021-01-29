@@ -1,0 +1,38 @@
+.list {
+    list-style-type: none;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.wrapper {}
+
+.item__name {
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.item__description {}
+
+.item__button {
+    padding: 10px 20px;
+    background: white;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+.item__button-icon {
+    height: 20px;
+    width: 20px;
+}
+
+.item__button:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
