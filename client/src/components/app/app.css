@@ -1,0 +1,25 @@
+:root {
+    --large-font: 30px;
+    --medium-font: 24px;
+    --common-font: 20px;
+    --small-font: 16px;
+    --border-radius-s: 20px;
+    --border-radius-xs: 10px;
+    --border-common: 1px solid black;
+    --line-height-s: 2.2rem;
+    --border-light: 1px solid rgba(0, 0, 0, 0.350);
+    --color-gray: rgba(0, 0, 0, 0.350);
+    --color-light-gray: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Montserrat';
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.wrapper {
+    font-size: 24px;
+}

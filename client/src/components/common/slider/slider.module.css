@@ -1,0 +1,44 @@
+@value border: var(--border-common);
+@value radius: var(--border-radius-xs);
+.box {
+    position: relative;
+    margin: 10px;
+    font-size: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.label {
+    margin-right: 1rem;
+    flex-basis: 20%;
+    text-align: center;
+}
+
+.input {
+    font-size: inherit;
+    font-family: inherit;
+    border-radius: radius;
+    margin: 0 2rem;
+    /* flex-grow: 1; */
+    cursor: pointer;
+    appearance: none;
+    flex-basis: 60%;
+}
+
+.input::-webkit-slider-thumb {
+    appearance: none;
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    color: aqua;
+    background-color: black;
+    margin-top: -12.5px;
+}
+
+.input::-webkit-slider-runnable-track {
+    /* -webkit-appearance: none; */
+    /* border: border; */
+    appearance: none;
+    height: 2.03px;
+    background: black;
+}

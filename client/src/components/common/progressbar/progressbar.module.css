@@ -1,0 +1,44 @@
+@value border: var(--border-common);
+@value radius: var(--border-radius-s);
+.box {
+    position: relative;
+    margin: 10px;
+    font-size: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.label {
+    margin-right: 1rem;
+    flex-basis: 30%;
+    text-align: center;
+}
+
+.input {
+    font-size: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    margin: 0 2rem;
+    width: 600px;
+    appearance: none;
+}
+
+.procent {
+    flex-basis: 10%;
+    margin-left: 1rem;
+    text-align: center;
+}
+
+.progress {
+    flex-basis: 60%;
+    height: 15px;
+    display: flex;
+    border-radius: radius;
+    border: border;
+    position: relative;
+}
+
+.progress_fill {
+    height: 13px;
+    border-radius: radius;
+}

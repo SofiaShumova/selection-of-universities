@@ -1,0 +1,21 @@
+@value border: var(--border-common);
+@value radius: var(--border-radius-xs);
+.button {
+    padding: 1.2rem 3.5rem;
+    font-size: inherit;
+    font-family: inherit;
+    border: border;
+    border-radius: radius;
+    background: white;
+    cursor: pointer;
+    transition: all linear 0.15s;
+}
+
+.button:hover {
+    background: black;
+    color: white;
+}
+
+.wrapper {
+    position: relative;
+}
