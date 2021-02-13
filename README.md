@@ -1,7 +1,7 @@
 <h1>
     Install:
 </h1>
-client/ -- npm install
+client/ -- npm install <br>
 server/ -- npm install
 
 <h1>
