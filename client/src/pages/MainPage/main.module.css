@@ -1,0 +1,15 @@
+.wrapper {
+    margin-top: 86px;
+}
+
+.right_wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.left_wrapper {}
+
+.title {
+    text-align: center;
+}

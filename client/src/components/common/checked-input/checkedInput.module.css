@@ -1,0 +1,15 @@
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input {
+    border: var(--border-common);
+    border-radius: var(--border-radius-xs);
+    padding: 1rem;
+    width: 100px;
+    font-size: inherit;
+    font-family: inherit;
+    text-align: center;
+}

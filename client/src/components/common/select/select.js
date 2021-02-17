@@ -4,19 +4,6 @@ import cancelIcon from './cancel.png';
 import styles from './select.module.css';
 import data from '../../../test-data/select-list';
 
-const Option = ({ item: { value, label, selected }, onClick }) => {
-  return (
-    <li
-      className={`${styles.item} ${selected && styles.item_selected}`}
-      data-value={value}
-      key={value}
-      onClick={onClick}
-    >
-      {label}
-    </li>
-  );
-};
-
 const SingleView = ({ item: { value, label } }) => {
   return (
     <span className={styles.selected_value} data-value={value}>
@@ -29,11 +16,9 @@ const MultiplyView = ({ items, removeItem }) => {
   return (
     <div className={styles.preview_block__multiply}>
       {items &&
-        items.map((i) => (
-          <div key={i.value} className={styles.item_block}>
-            <span className={styles.item_multiply} data-value={i.value}>
-              {i.label}
-            </span>
+        items.map((i, index) => (
+          <div key={index} className={styles.item_block}>
+            <span className={styles.item_multiply}>{i.label}</span>
             <img
               className={styles.item_multiply__icon}
               src={cancelIcon}
@@ -53,17 +38,24 @@ const Select = ({ label, data, multiply }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const renderItems = (list) => {
-    return list.map((item) => {
+    return list.map((item, index) => {
       return (
-        <Option
-          key={item.value}
-          item={item}
+        <li
+          className={`${styles.item} ${item.selected && styles.item_selected}`}
+          data-value={item.value}
+          key={index}
           onClick={() => {
-            setSelectedValue(multiply ? selectedValue.concat(item) : item);
-            if (!multiply) setIsOpen(!isOpen);
+            if (!multiply) {
+              selectedValue.selected = false;
+              setIsOpen(!isOpen);
+            }
+
             item.selected = true;
+            setSelectedValue(multiply ? [...selectedValue, item] : item);
           }}
-        />
+        >
+          {item.label}
+        </li>
       );
     });
   };
@@ -83,7 +75,13 @@ const Select = ({ label, data, multiply }) => {
         />
         <div className={styles.preview_block}>
           {multiply ? (
-            <MultiplyView items={selectedValue} removeItem={(item) => {}} />
+            <MultiplyView
+              items={selectedValue}
+              removeItem={(item) => {
+                item.selected = false;
+                setSelectedValue(selectedValue.filter((v) => v !== item));
+              }}
+            />
           ) : (
             <SingleView item={selectedValue} />
           )}

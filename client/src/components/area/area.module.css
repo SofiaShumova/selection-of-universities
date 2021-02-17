@@ -1,0 +1,14 @@
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+}
+
+.left {
+    flex-basis: 70%;
+}
+
+.right {
+    flex-basis: 30%;
+    border-left: var(--border-common);
+    padding-left: 10px;
+}
