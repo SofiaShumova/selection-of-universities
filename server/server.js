@@ -17,6 +17,11 @@ app.use(
 );
 app.use('/api/profession', require('./routes/profession.routes'));
 app.use('/api/training-program', require('./routes/trainingProgram.routes'));
+app.use('/api/type', require('./routes/type.routes'));
+app.use('/api/form-of-education', require('./routes/formOfEducation.routes'));
+app.use('/api/basis-of-learning', require('./routes/basisOfLearning.routes'));
+app.use('/api/criterion', require('./routes/criterion.routes'));
+app.use('/api/university', require('./routes/university.routes'));
 
 mongoose.connect(
     url, {
@@ -29,4 +34,3 @@ mongoose.connect(
     }
 );
 app.listen(PORT, () => console.log(`App has been started on port ${PORT}...`));
-// start();

@@ -13,12 +13,23 @@ const requirementsSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'LevelOfPreparation',
     },
+    basisOfLearning: {
+        type: Schema.Types.ObjectId,
+        ref: 'BasisOfLearning',
+    },
+    numberOfStudents: {
+        type: Number,
+    },
+    trainingDuration: {
+        type: Number,
+    },
     disciplines: [{
-        discipline: { type: Schema.Types.ObjectId, ref: 'LevelOfPreparation' },
+        discipline: { type: Schema.Types.ObjectId, ref: 'Discipline' },
         score: { type: Number },
     }, ],
 });
-exports.AdmissionRequirements = model(
+module.exports = model(
     'AdmissionRequirements',
-    requirementsSchema
+    requirementsSchema,
+    'AdmissionRequirements'
 );

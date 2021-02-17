@@ -10,6 +10,10 @@ const universitySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'City',
     },
+    phone: {
+        type: String,
+        required: false,
+    },
     description: {
         type: String,
         required: false,
@@ -18,6 +22,22 @@ const universitySchema = new Schema({
         type: Number,
         required: false,
     },
+    type: {
+        type: Schema.Types.ObjectId,
+        ref: 'Type',
+    },
+    militaryDepartment: {
+        type: Boolean,
+        required: false,
+    },
+    dormitory: {
+        type: Boolean,
+        required: false,
+    },
+    site: {
+        type: String,
+        required: false,
+    },
 });
 
-exports.University = model('University', universitySchema);
+exports.University = model('University', universitySchema, 'University');

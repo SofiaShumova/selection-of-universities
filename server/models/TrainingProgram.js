@@ -13,5 +13,3 @@ const programSchema = new Schema({
     professions: [{ type: Schema.Types.ObjectId, ref: 'Profession' }],
 });
 module.exports = model('TrainingProgram', programSchema, 'TrainingProgram');
-
-// DONE: create table: Profession, University, TrainingProgram, City, LevelOfPreparation, AdmissionRequirements, Discipline

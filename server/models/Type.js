@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const citySchema = new Schema({
+const typeSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -11,5 +11,4 @@ const citySchema = new Schema({
         required: false,
     },
 });
-
-module.exports = model('City', citySchema, 'City');
+module.exports = model('Type', typeSchema, 'Type');
