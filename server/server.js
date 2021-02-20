@@ -22,6 +22,7 @@ app.use('/api/form-of-education', require('./routes/formOfEducation.routes'));
 app.use('/api/basis-of-learning', require('./routes/basisOfLearning.routes'));
 app.use('/api/criterion', require('./routes/criterion.routes'));
 app.use('/api/university', require('./routes/university.routes'));
+app.use('/api/category', require('./routes/catregory.routes'));
 
 mongoose.connect(
     url, {

@@ -40,4 +40,4 @@ const universitySchema = new Schema({
     },
 });
 
-exports.University = model('University', universitySchema, 'University');
+module.exports = model('University', universitySchema, 'University');
