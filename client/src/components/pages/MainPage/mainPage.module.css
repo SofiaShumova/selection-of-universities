@@ -8,7 +8,9 @@
     width: 100%;
 }
 
-.left_wrapper {}
+.left_wrapper {
+    padding: 10px;
+}
 
 .title {
     text-align: center;

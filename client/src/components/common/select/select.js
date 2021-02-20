@@ -1,13 +1,12 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import arrowIcon from './arrow-down-sign-to-navigate.png';
 import cancelIcon from './cancel.png';
 import styles from './select.module.css';
-import data from '../../../test-data/select-list';
 
-const SingleView = ({ item: { value, label } }) => {
+const SingleView = ({ item: { value, name } }) => {
   return (
     <span className={styles.selected_value} data-value={value}>
-      {label}
+      {name}
     </span>
   );
 };
@@ -17,8 +16,8 @@ const MultiplyView = ({ items, removeItem }) => {
     <div className={styles.preview_block__multiply}>
       {items &&
         items.map((i, index) => (
-          <div key={index} className={styles.item_block}>
-            <span className={styles.item_multiply}>{i.label}</span>
+          <div key={i._id || index} className={styles.item_block}>
+            <span className={styles.item_multiply}>{i.name}</span>
             <img
               className={styles.item_multiply__icon}
               src={cancelIcon}
@@ -42,8 +41,7 @@ const Select = ({ label, data, multiply }) => {
       return (
         <li
           className={`${styles.item} ${item.selected && styles.item_selected}`}
-          data-value={item.value}
-          key={index}
+          key={item._id || index}
           onClick={() => {
             if (!multiply) {
               selectedValue.selected = false;
@@ -54,7 +52,7 @@ const Select = ({ label, data, multiply }) => {
             setSelectedValue(multiply ? [...selectedValue, item] : item);
           }}
         >
-          {item.label}
+          {item.name}
         </li>
       );
     });

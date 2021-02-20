@@ -1,0 +1,19 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.button {
+    margin: 20px auto;
+}
+
+.title {
+    text-align: center;
+}
+
+.link {
+    color: inherit;
+    margin: 20px auto;
+    display: block;
+    text-align: center;
+}

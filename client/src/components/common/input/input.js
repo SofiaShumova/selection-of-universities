@@ -1,10 +1,19 @@
 import React from 'react';
 import styles from './input.module.css';
-const Input = ({ label, placeholder }) => {
+const Input = ({ label, placeholder, type = 'text', name }) => {
   return (
     <div className={styles.box}>
-      {label && <label className={styles.label}>{label}:</label>}
-      <input className={styles.input} type="text" placeholder={placeholder} />
+      {label && (
+        <label htmlFor={name ? name : ''} className={styles.label}>
+          {label}:
+        </label>
+      )}
+      <input
+        name={name ? name : ''}
+        className={styles.input}
+        type={type}
+        placeholder={placeholder}
+      />
     </div>
   );
 };

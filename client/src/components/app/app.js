@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './app.css';
 
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -12,18 +12,16 @@ const user = {
   isAdmin: false,
 };
 
-class App extends Component {
-  render() {
-    const { routes, links } = navigation(user);
-    return (
-      <Router>
-        <div className="wrapper">
-          <Header>{links}</Header>
-          <div>{routes}</div>
-        </div>
-      </Router>
-    );
-  }
-}
+const App = () => {
+  const { routes, links } = navigation(isAuth, user);
+  return (
+    <Router>
+      <div className="wrapper">
+        <Header>{links}</Header>
+        <div>{routes}</div>
+      </div>
+    </Router>
+  );
+};
 
 export default App;

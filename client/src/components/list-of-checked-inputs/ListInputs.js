@@ -10,8 +10,8 @@ const ListInputs = ({ data, label, height = '300px' }) => {
         {data &&
           data.map((item, index) => {
             return (
-              <li key={index}>
-                <CheckedInput label={item.label} />
+              <li key={item._id || index}>
+                <CheckedInput label={item.name} />
               </li>
             );
           })}

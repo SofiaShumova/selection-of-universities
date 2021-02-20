@@ -5,7 +5,6 @@
 @value radius: var(--border-radius-xs);
 .border_wrapper {
     font-size: inherit;
-    /* test properties end */
     position: relative;
     flex-grow: 1;
     min-width: 200px;
@@ -14,7 +13,7 @@
 .list {
     display: none;
     z-index: 100;
-    position: relative;
+    position: absolute;
     list-style-type: none;
     margin: 5px 0 0 0;
     padding: 10px 20px;
@@ -22,6 +21,8 @@
     border-radius: radius;
     max-height: 300px;
     overflow-x: scroll;
+    width: 100%;
+    background: white;
 }
 
 .item {
@@ -103,12 +104,12 @@
     font-size: inherit;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .label {
     /* flex-basis: 20%; */
     margin-right: 1rem;
     min-width: 200px;
-    /* margin-top: 1rem; */
+    /* margin-top: 0.8rem; */
 }
