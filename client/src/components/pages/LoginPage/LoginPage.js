@@ -1,6 +1,5 @@
 import React from 'react';
-import Input from '../../common/input';
-import Button from '../../common/button';
+import { Input, Button } from '../../common';
 import styles from './loginPage.module.css';
 import { Link } from 'react-router-dom';
 

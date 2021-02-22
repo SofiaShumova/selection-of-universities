@@ -1,9 +1,8 @@
 import React from 'react';
 import styles from './filtresUniversity.module.css';
 import TestService from '../../service/testService';
-import Select from '../common/select';
+import { Select, Checkbox } from '../common';
 import ListInputs from '../list-of-checked-inputs';
-import Checkbox from '../common/checkbox';
 
 const FiltresUniversity = ({ title }) => {
   const {

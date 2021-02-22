@@ -1,9 +1,6 @@
 import React from 'react';
 import Area from '../../area/Area';
-import Checkbox from '../../common/checkbox/checkbox';
-import Input from '../../common/input';
-import Select from '../../common/select';
-import ListInputs from '../../list-of-checked-inputs/ListInputs';
+import { Input } from '../../common';
 import styles from './mainPage.module.css';
 import TestService from '../../../service/testService';
 import UniversityCard from '../../university-card/university-card';

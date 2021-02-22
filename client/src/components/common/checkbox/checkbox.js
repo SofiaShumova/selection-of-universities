@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './checkbox.module.css';
 import tick from './tick.png';
 
-const Checkbox = ({ label, changeValue }) => {
+const Checkbox = ({ label, onChange, checked }) => {
   return (
     <div className={styles.box}>
       <div className={styles.rectangle}>
@@ -10,8 +10,9 @@ const Checkbox = ({ label, changeValue }) => {
           type="checkbox"
           className={styles.checkbox_hidden}
           onChange={(e) => {
-            if (changeValue) changeValue(e.target.checked);
+            if (onChange) onChange(e.target.checked);
           }}
+          checked={checked}
         />
         <img src={tick} alt="tick icon" className={styles.tick} />
       </div>

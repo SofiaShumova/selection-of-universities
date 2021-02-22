@@ -50,6 +50,46 @@ export default class TestService {
     },
   ];
 
+  _categories = [
+    {
+      _id: 1,
+      name: 'Критерии образования',
+      description: '',
+      criterions: [
+        { _id: 1, name: 'Качество образования', description: '' },
+        { _id: 2, name: 'Сложность обучения', description: '' },
+        { _id: 3, name: 'Преподавательский состав', description: '' },
+      ],
+    },
+    {
+      _id: 2,
+      name: 'Статусные критерии',
+      description: '',
+      criterions: [
+        { _id: 4, name: 'Статус', description: '' },
+        { _id: 5, name: 'Рейтинг', description: '' },
+        { _id: 6, name: 'Репутация', description: '' },
+      ],
+    },
+    {
+      _id: 3,
+      name: 'Критерии поступления',
+      description: '',
+      criterions: [
+        { _id: 7, name: 'Стоимость обучения', description: '' },
+        { _id: 8, name: 'Сложность вступительных испытаний', description: '' },
+      ],
+    },
+    {
+      _id: 4,
+      name: 'Критерии внеучебной деятельности',
+      description: '',
+      criterions: [
+        { _id: 9, name: 'Конференции и олимпиады', description: '' },
+      ],
+    },
+  ];
+
   getCities = () => {
     return this._cities;
   };
@@ -76,5 +116,9 @@ export default class TestService {
 
   getUniversities = () => {
     return this._universities;
+  };
+
+  getCategories = () => {
+    return this._categories;
   };
 }

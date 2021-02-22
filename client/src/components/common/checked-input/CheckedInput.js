@@ -7,7 +7,7 @@ const CheckedInput = ({ label }) => {
   return (
     <div className={styles.box}>
       <div>
-        <Checkbox label={label} changeValue={(val) => setVisible(val)} />
+        <Checkbox label={label} onChange={(val) => setVisible(val)} />
       </div>
       {visible && <input className={styles.input} type="text" />}
     </div>

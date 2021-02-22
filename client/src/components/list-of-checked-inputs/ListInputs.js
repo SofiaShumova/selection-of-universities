@@ -1,5 +1,5 @@
 import React from 'react';
-import CheckedInput from '../common/checked-input/CheckedInput';
+import { CheckedInput } from '../common';
 import styles from './ListInputs.module.css';
 
 const ListInputs = ({ data, label, height = '300px' }) => {
