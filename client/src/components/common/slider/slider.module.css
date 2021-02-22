@@ -2,15 +2,15 @@
 @value radius: var(--border-radius-xs);
 .box {
     position: relative;
-    margin: 10px;
+    margin: 70px 0;
     font-size: inherit;
     display: flex;
     align-items: center;
 }
 
 .label {
-    margin-right: 1rem;
-    flex-basis: 20%;
+    /* margin-right: 1rem; */
+    flex-basis: 30%;
     text-align: center;
 }
 
@@ -22,7 +22,7 @@
     /* flex-grow: 1; */
     cursor: pointer;
     appearance: none;
-    flex-basis: 60%;
+    flex-basis: 50%;
 }
 
 .input::-webkit-slider-thumb {
@@ -39,6 +39,6 @@
     /* -webkit-appearance: none; */
     /* border: border; */
     appearance: none;
-    height: 2.03px;
+    height: 2px;
     background: black;
 }

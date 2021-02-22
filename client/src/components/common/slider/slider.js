@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styles from './slider.module.css';
 
-const Slider = ({ startLabel, endLabel, initialValue }) => {
-  const [value, setValue] = useState(0);
+const Slider = ({ startLabel, endLabel, initialValue, onChange }) => {
+  const [value, setValue] = useState(initialValue || 0);
 
   return (
     <div className={styles.box}>
@@ -15,6 +15,7 @@ const Slider = ({ startLabel, endLabel, initialValue }) => {
         type="range"
         onChange={({ target: { value } }) => {
           setValue(value);
+          onChange(value);
         }}
       />
       <span className={styles.label}> {endLabel}</span>
