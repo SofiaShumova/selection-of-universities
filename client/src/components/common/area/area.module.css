@@ -5,6 +5,7 @@
 
 .left {
     flex-basis: 70%;
+    padding: 10px;
 }
 
 .right {
