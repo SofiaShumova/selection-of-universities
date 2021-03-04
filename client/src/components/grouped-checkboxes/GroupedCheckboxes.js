@@ -21,7 +21,7 @@ const GroupedCheckboxes = ({
       <ul className={`${styles.list} ${!enabledList && styles.disabled}`}>
         {category.criterions &&
           category.criterions.map((criterion, index) => (
-            <li key={criterion._id || index}>
+            <li key={criterion._id}>
               <Checkbox
                 label={criterion.name}
                 onChange={() => onChangeCriterion(category, criterion)}

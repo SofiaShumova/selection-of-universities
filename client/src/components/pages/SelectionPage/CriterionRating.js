@@ -9,7 +9,7 @@ const CriterionRating = ({ categories, onChange }) => {
       {categories.map((category, index) => {
         return (
           !!category.pairs.length && (
-            <div key={category._id || index}>
+            <div key={category._id}>
               <h3>{category.name}</h3>
               {category.pairs.map((pair, index) => (
                 <Slider
