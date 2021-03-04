@@ -1,41 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import TestService from '../../../service/TestService';
-import StepsButtons from '../../steps-buttons';
 import StartPage from './StartPage';
 import ParametrSelection from './ParametrSelection';
 import CategoryRating from './CategoryRating';
 import CriterionRating from './CriterionRating';
 import Analysis from '../../../service/analysis';
+import BasicWizard from '../../basic-wizard';
+import { useStateWithPromise } from '../../hooks';
 
 const SelectionPage = () => {
   const { getCategories } = new TestService();
 
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [pairsOfCategories, setPairsOfCategories] = useState([]);
   const [pairsOfCriterions, setPairsOfCriterions] = useState([]);
   const [resultArray, setResultArray] = useState([]);
 
-  const [categories, setCategories] = useState(getCategories());
+  const [categories] = useStateWithPromise([], getCategories);
 
   useEffect(() => {
     setPairsOfCategories(getPairsOfCategories(selectedCategories));
     setPairsOfCriterions(getPairsOfCriterions(selectedCategories));
   }, [selectedCategories]);
-
-  const nextPage = () => {
-    if (currentIndex === pages.length - 2) {
-      const analysis = new Analysis(
-        selectedCategories,
-        pairsOfCategories,
-        pairsOfCriterions
-      );
-    }
-    setCurrentIndex(currentIndex + 1);
-  };
-  const previousPage = () => {
-    setCurrentIndex(currentIndex - 1);
-  };
 
   const toggleCategory = (category) => {
     const foundCategory = selectedCategories.find(
@@ -120,29 +106,29 @@ const SelectionPage = () => {
   };
   const result = <h2>Результат</h2>;
 
-  const pages = [
-    <StartPage nextPage={nextPage} />,
-    <ParametrSelection
-      categories={categories}
-      onChangeCategory={toggleCategory}
-      onChangeCriterion={toggleCriterion}
-    />,
-    <CategoryRating pairs={pairsOfCategories} onChange={rate} />,
-    <CriterionRating categories={pairsOfCriterions} onChange={rate} />,
-    result,
-  ];
-
   return (
     <div>
-      {pages[currentIndex]}
-      <StepsButtons
-        nextHandler={nextPage}
-        previousHandler={previousPage}
-        hasPrevious={currentIndex !== 0}
-        hasNext={currentIndex !== pages.length - 1}
-      />
+      <BasicWizard>
+        <StartPage />
+        <ParametrSelection
+          categories={categories}
+          onChangeCategory={toggleCategory}
+          onChangeCriterion={toggleCriterion}
+        />
+        <CategoryRating pairs={pairsOfCategories} onChange={rate} />
+        <CriterionRating categories={pairsOfCriterions} onChange={rate} />
+        {result}
+      </BasicWizard>
     </div>
   );
 };
 
 export default SelectionPage;
+
+// if (currentIndex === pages.length - 2) {
+//   const analysis = new Analysis(
+//     selectedCategories,
+//     pairsOfCategories,
+//     pairsOfCriterions
+//   );
+// }
