@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import TestService from '../../../service/testService';
+import TestService from '../../../service/TestService';
 import StepsButtons from '../../steps-buttons';
 import StartPage from './StartPage';
 import ParametrSelection from './ParametrSelection';
 import CategoryRating from './CategoryRating';
 import CriterionRating from './CriterionRating';
-// import Analysis from '../../../service/analysis';
+import Analysis from '../../../service/analysis';
 
 const SelectionPage = () => {
   const { getCategories } = new TestService();
@@ -24,13 +24,13 @@ const SelectionPage = () => {
   }, [selectedCategories]);
 
   const nextPage = () => {
-    // if (currentIndex === pages.length - 2) {
-    //   const analysis = new Analysis(
-    //     selectedCategories,
-    //     pairsOfCategories,
-    //     pairsOfCriterions
-    //   );
-    // }
+    if (currentIndex === pages.length - 2) {
+      const analysis = new Analysis(
+        selectedCategories,
+        pairsOfCategories,
+        pairsOfCriterions
+      );
+    }
     setCurrentIndex(currentIndex + 1);
   };
   const previousPage = () => {
@@ -114,6 +114,7 @@ const SelectionPage = () => {
       return category;
     });
   };
+
   const rate = (pair, value) => {
     pair.rate = value;
   };

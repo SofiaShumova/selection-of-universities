@@ -114,7 +114,7 @@ export default class TestService {
     return this._disciplines;
   };
 
-  getUniversities = () => {
+  getUniversities = async () => {
     return this._universities;
   };
 
