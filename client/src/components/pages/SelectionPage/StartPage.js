@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './selectionPage.module.css';
-import FiltresUniversity from '../../filtres-university/FiltresUniversity';
+import UniversityFiltres from '../../university-filtres/UniversityFilters';
 
 const StartPage = () => (
   <div className={styles.form}>
-    <FiltresUniversity title="Фильтры для подбора" />
+    <UniversityFiltres title="Фильтры для подбора" />
   </div>
 );
 export default StartPage;
