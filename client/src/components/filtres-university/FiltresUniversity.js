@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './filtresUniversity.module.css';
-import TestService from '../../service/testService';
+import TestService from '../../service/TestService';
 import { Select, Checkbox } from '../common';
 import ListInputs from '../list-of-checked-inputs';
 
