@@ -1,115 +1,56 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import TestService from '../../../service/TestService';
-import StartPage from './StartPage';
-import ParametrSelection from './ParametrSelection';
-import CategoryRating from './CategoryRating';
-import CriterionRating from './CriterionRating';
-import Analysis from '../../../service/analysis';
-import BasicWizard from '../../basic-wizard';
+import getPairs from '../../../service/analysis/getPairs';
 import { useStateWithPromise } from '../../hooks';
+
+import BasicWizard from '../../basic-wizard';
+import UniversityFiltres from '../../university-filtres';
+import {
+  ParametrSelection,
+  CategoryRating,
+  CriterionRating,
+  ResultPage,
+} from './slides';
 
 const SelectionPage = () => {
   const { getCategories } = new TestService();
 
-  const [selectedCategories, setSelectedCategories] = useState([]);
   const [pairsOfCategories, setPairsOfCategories] = useState([]);
   const [pairsOfCriterions, setPairsOfCriterions] = useState([]);
-  const [resultArray, setResultArray] = useState([]);
 
   const [categories] = useStateWithPromise([], getCategories);
 
-  useEffect(() => {
-    setPairsOfCategories(getPairsOfCategories(selectedCategories));
-    setPairsOfCriterions(getPairsOfCriterions(selectedCategories));
-  }, [selectedCategories]);
+  const setPairs = () => {
+    const { pairsOfCategories, pairsOfCriterions } = getPairs(categories);
+    setPairsOfCategories(pairsOfCategories);
+    setPairsOfCriterions(pairsOfCriterions);
+  };
 
   const toggleCategory = (category) => {
-    const foundCategory = selectedCategories.find(
-      (c) => c._id === category._id
-    );
+    if (!category.checked) {
+      category.checked = !category.checked;
 
-    if (foundCategory) {
-      setSelectedCategories(
-        selectedCategories.filter((c) => c._id !== category._id)
-      );
-      category.checked = false;
+      //category.criterions.forEach((criterion) => (criterion.checked = true));
+      // TODO: not working select criterion
     } else {
-      const copy = Object.assign({}, category);
-      copy.criterions = [];
-      setSelectedCategories([...selectedCategories, copy]);
-      category.checked = true;
+      category.checked = !category.checked;
     }
+    setPairs();
   };
 
   const toggleCriterion = (category, criterion) => {
-    const foundCategory = selectedCategories.find(
-      (c) => c._id === category._id
-    );
-
-    const foundCriterion = foundCategory.criterions.find(
-      (c) => c._id === criterion._id
-    );
-
-    if (foundCriterion) {
-      foundCategory.criterions = foundCategory.criterions.filter(
-        (c) => c._id !== criterion._id
-      );
-      criterion.checked = false;
-    } else {
-      foundCategory.criterions.push(Object.assign({}, criterion));
-      criterion.checked = true;
-    }
-    setSelectedCategories([...selectedCategories]);
-  };
-
-  const getPairsOfCategories = (selectedCategories) => {
-    const pairs = [];
-    const categories = selectedCategories.filter(
-      (category) => category.criterions.length
-    );
-
-    for (let i = 0; i < categories.length - 1; i++) {
-      for (let j = i + 1; j < categories.length; j++) {
-        pairs.push({
-          first: categories[i],
-          second: categories[j],
-        });
-      }
-    }
-    return pairs;
-  };
-
-  const getPairsOfCriterions = (selectedCategories) => {
-    const categories = selectedCategories.filter(
-      (category) => category.criterions.length
-    );
-
-    return categories.map((category) => {
-      const pairs = [];
-      const length = category.criterions.length;
-
-      for (let i = 0; i < length - 1; i++) {
-        for (let j = i + 1; j < length; j++) {
-          pairs.push({
-            first: category.criterions[i],
-            second: category.criterions[j],
-          });
-        }
-      }
-      category.pairs = pairs;
-      return category;
-    });
+    criterion.checked = !criterion.checked;
+    setPairs();
   };
 
   const rate = (pair, value) => {
     pair.rate = value;
   };
-  const result = <h2>Результат</h2>;
 
   return (
     <div>
       <BasicWizard>
-        <StartPage />
+        <UniversityFiltres title="Фильтры для подбора" />
         <ParametrSelection
           categories={categories}
           onChangeCategory={toggleCategory}
@@ -117,18 +58,10 @@ const SelectionPage = () => {
         />
         <CategoryRating pairs={pairsOfCategories} onChange={rate} />
         <CriterionRating categories={pairsOfCriterions} onChange={rate} />
-        {result}
+        <ResultPage />
       </BasicWizard>
     </div>
   );
 };
 
 export default SelectionPage;
-
-// if (currentIndex === pages.length - 2) {
-//   const analysis = new Analysis(
-//     selectedCategories,
-//     pairsOfCategories,
-//     pairsOfCriterions
-//   );
-// }
