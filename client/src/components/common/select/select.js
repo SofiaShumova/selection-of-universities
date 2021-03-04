@@ -3,26 +3,22 @@ import arrowIcon from './arrow-down-sign-to-navigate.png';
 import cancelIcon from './cancel.png';
 import styles from './select.module.css';
 
-const SingleView = ({ item: { value, name } }) => {
-  return (
-    <span className={styles.selected_value} data-value={value}>
-      {name}
-    </span>
-  );
+const SingleSelect = ({ item: { name } }) => {
+  return <span className={styles.selected_value}>{name}</span>;
 };
 
-const MultiplyView = ({ items, removeItem }) => {
+const MultiSelect = ({ items, removeItem }) => {
   return (
     <div className={styles.preview_block__multiply}>
       {items &&
-        items.map((i, index) => (
-          <div key={i._id || index} className={styles.item_block}>
-            <span className={styles.item_multiply}>{i.name}</span>
+        items.map((item) => (
+          <div key={item._id} className={styles.item_block}>
+            <span className={styles.item_multiply}>{item.name}</span>
             <img
               className={styles.item_multiply__icon}
               src={cancelIcon}
               onClick={() => {
-                removeItem(i);
+                removeItem(item);
               }}
               alt="cancel icon"
             />
@@ -33,30 +29,47 @@ const MultiplyView = ({ items, removeItem }) => {
 };
 
 const Select = ({ label, data, multiply }) => {
-  const [selectedValue, setSelectedValue] = useState(multiply ? [] : data[0]);
+  const [selectedValue, setSelectedValue] = useState(multiply ? [] : null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const renderItems = (list) => {
-    return list.map((item, index) => {
-      return (
-        <li
-          className={`${styles.item} ${item.selected && styles.item_selected}`}
-          key={item._id || index}
-          onClick={() => {
-            if (!multiply) {
-              selectedValue.selected = false;
-              setIsOpen(!isOpen);
-            }
+  const selectItem = (item) => {
+    if (multiply) {
+      setSelectedValue([...selectedValue, item]);
+      item.selected = true;
+    } else {
+      if (selectedValue) selectedValue.selected = false;
+      item.selected = true;
+      setSelectedValue(item);
+      setIsOpen(!isOpen);
+    }
+  };
 
-            item.selected = true;
-            setSelectedValue(multiply ? [...selectedValue, item] : item);
-          }}
-        >
+  const removeItem = (item) => {
+    if (multiply) {
+      item.selected = false;
+      setSelectedValue(selectedValue.filter((value) => value._id !== item._id));
+    }
+  };
+
+  const renderItems = (list) => {
+    return list.map((item) => {
+      const classes = `${styles.item} ${
+        item.selected ? styles.item_selected : ''
+      }`;
+
+      return (
+        <li key={item._id} className={classes} onClick={() => selectItem(item)}>
           {item.name}
         </li>
       );
     });
   };
+
+  const preview = multiply ? (
+    <MultiSelect items={selectedValue} removeItem={removeItem} />
+  ) : (
+    <SingleSelect item={selectedValue} />
+  );
 
   return (
     <div className={styles.box}>
@@ -68,27 +81,18 @@ const Select = ({ label, data, multiply }) => {
             setIsOpen(!isOpen);
           }}
           type="checkbox"
-          name="open-list"
           className={styles.checkbox}
         />
         <div className={styles.preview_block}>
-          {multiply ? (
-            <MultiplyView
-              items={selectedValue}
-              removeItem={(item) => {
-                item.selected = false;
-                setSelectedValue(selectedValue.filter((v) => v !== item));
-              }}
-            />
-          ) : (
-            <SingleView item={selectedValue} />
-          )}
+          {selectedValue && preview}
           <img src={arrowIcon} alt="arrow icon" className={styles.icon} />
         </div>
-        <ul className={styles.list}>{data && renderItems(data)}</ul>
+        {data.length && <ul className={styles.list}>{renderItems(data)}</ul>}
       </div>
     </div>
   );
 };
 
 export default Select;
+
+// TODO: warning key prop in MultiSelect and select ?!?!?!?!?
