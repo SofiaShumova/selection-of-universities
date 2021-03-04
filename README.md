@@ -1,10 +1,11 @@
 <h1>
     Install:
 </h1>
-client/ -- npm install <br>
-server/ -- npm install
+npm init-all
 
 <h1>
     Start:
 </h1>
-npm run start-all --prefix server
+server only - npm start-server-only <br>
+client only - npm start-client-only <br>
+all - npm start-all <br>

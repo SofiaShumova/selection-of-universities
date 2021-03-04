@@ -1,0 +1,10 @@
+{
+    "scripts": {
+        "init-client": "npm install --prefix ./client",
+        "init-server": "npm install --prefix ./server",
+        "init-all": "npm init-client & npm init-server",
+        "start-client-only": "npm run start  --prefix ./client",
+        "start-server-only": "npm run start  --prefix ./server",
+        "start-all": "npm start-all --prefix ./server"
+    }
+}
