@@ -35,13 +35,13 @@ const Select = ({ label, data, multiply }) => {
   const selectItem = (item) => {
     if (multiply) {
       setSelectedValue([...selectedValue, item]);
-      item.selected = true;
     } else {
       if (selectedValue) selectedValue.selected = false;
-      item.selected = true;
       setSelectedValue(item);
       setIsOpen(!isOpen);
     }
+
+    item.selected = true;
   };
 
   const removeItem = (item) => {

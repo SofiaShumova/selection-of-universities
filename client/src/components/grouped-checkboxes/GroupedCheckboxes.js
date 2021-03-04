@@ -7,20 +7,20 @@ const GroupedCheckboxes = ({
   onChangeCategory,
   onChangeCriterion,
 }) => {
-  const [enabledList, setEnabledList] = useState(category.checked);
+  const [isCheckedGroup, setIsCheckedGroup] = useState(category.checked);
   return (
     <div>
       <Checkbox
         label={category.name}
         onChange={() => {
-          setEnabledList(!enabledList);
+          setIsCheckedGroup(!isCheckedGroup);
           onChangeCategory(category);
         }}
         checked={category.checked}
       />
-      <ul className={`${styles.list} ${!enabledList && styles.disabled}`}>
+      <ul className={`${styles.list} ${!isCheckedGroup && styles.disabled}`}>
         {category.criterions &&
-          category.criterions.map((criterion, index) => (
+          category.criterions.map((criterion) => (
             <li key={criterion._id}>
               <Checkbox
                 label={criterion.name}
