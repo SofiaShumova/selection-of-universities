@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './filtresUniversity.module.css';
+import styles from './universityFiltres.module.css';
 import TestService from '../../service/TestService';
 import { useStateWithPromise } from '../hooks';
 
