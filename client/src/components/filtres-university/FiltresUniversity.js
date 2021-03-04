@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './filtresUniversity.module.css';
 import TestService from '../../service/TestService';
+import { useStateWithPromise } from '../hooks';
+
 import { Select, Checkbox } from '../common';
 import ListInputs from '../list-of-checked-inputs';
 
@@ -13,27 +15,27 @@ const FiltresUniversity = ({ title }) => {
     getLevelsOfPreparation,
     getTypesUniversity,
   } = new TestService();
+
+  const [cities] = useStateWithPromise([], getCities);
+  const [programs] = useStateWithPromise([], getPrograms);
+  const [disciplines] = useStateWithPromise([], getDisciplines);
+  const [formsEducation] = useStateWithPromise([], getFormsEducation);
+  const [levelsOfPreparation] = useStateWithPromise([], getLevelsOfPreparation);
+  const [typesUniversity] = useStateWithPromise([], getTypesUniversity);
+
   return (
     <div>
       <h2 className={styles.title}>{title}</h2>
-      <Select label="Город" data={getCities()} />
-      <Select
-        label="Направления подготовки"
-        data={getPrograms()}
-        multiply={true}
-      />
-      <ListInputs data={getDisciplines()} label="Предметы" />
-      <Select
-        label="Форма обучения"
-        data={getFormsEducation()}
-        multiply={true}
-      />
+      <Select label="Город" data={cities} />
+      <Select label="Направления подготовки" data={programs} multiply={true} />
+      <ListInputs data={disciplines} label="Предметы" />
+      <Select label="Форма обучения" data={formsEducation} multiply={true} />
       <Select
         label="Уровень подготовки"
-        data={getLevelsOfPreparation()}
+        data={levelsOfPreparation}
         multiply={true}
       />
-      <Select label="Тип университета" data={getTypesUniversity()} />
+      <Select label="Тип университета" data={typesUniversity} />
       <Checkbox label="Общежитие" />
       <Checkbox label="Бюджетные места" />
       <Checkbox label="Военная кафедра" />

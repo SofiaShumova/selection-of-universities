@@ -90,27 +90,27 @@ export default class TestService {
     },
   ];
 
-  getCities = () => {
+  getCities = async () => {
     return this._cities;
   };
 
-  getPrograms = () => {
+  getPrograms = async () => {
     return this._programs;
   };
 
-  getLevelsOfPreparation = () => {
+  getLevelsOfPreparation = async () => {
     return this._levelsOfPreparation;
   };
 
-  getFormsEducation = () => {
+  getFormsEducation = async () => {
     return this._formsEducation;
   };
 
-  getTypesUniversity = () => {
+  getTypesUniversity = async () => {
     return this._typesUniversity;
   };
 
-  getDisciplines = () => {
+  getDisciplines = async () => {
     return this._disciplines;
   };
 
@@ -118,7 +118,7 @@ export default class TestService {
     return this._universities;
   };
 
-  getCategories = () => {
+  getCategories = async () => {
     return this._categories;
   };
 }
