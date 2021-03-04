@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './selectionPage.module.css';
-import UniversityFiltres from '../../university-filtres/UniversityFilters';
+import UniversityFiltres from '../../university-filtres';
 
 const StartPage = () => (
   <div className={styles.form}>

@@ -3,7 +3,7 @@ import styles from './mainPage.module.css';
 import TestService from '../../../service/TestService';
 
 import { Area } from '../../common';
-import FiltresUniversity from '../../university-filtres/UniversityFilters';
+import UniversityFiltres from '../../university-filtres';
 import ListOfUniversities from '../../list-of-universities';
 import { useStateWithPromise } from '../../hooks';
 
@@ -16,7 +16,7 @@ const MainPage = () => {
     <div className={styles.wrapper}>
       <Area
         left={<ListOfUniversities data={data} />}
-        right={<FiltresUniversity title="Фильтры" />}
+        right={<UniversityFiltres title="Фильтры" />}
       />
     </div>
   );

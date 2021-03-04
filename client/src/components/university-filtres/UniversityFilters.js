@@ -6,7 +6,7 @@ import { useStateWithPromise } from '../hooks';
 import { Select, Checkbox } from '../common';
 import ListInputs from '../list-of-checked-inputs';
 
-const FiltresUniversity = ({ title }) => {
+const UniversityFiltres = ({ title }) => {
   const {
     getCities,
     getPrograms,
@@ -43,4 +43,4 @@ const FiltresUniversity = ({ title }) => {
   );
 };
 
-export default FiltresUniversity;
+export default UniversityFiltres;
