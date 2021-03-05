@@ -1,5 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './textarea.module.css';
+
 const Textarea = ({ label, placeholder }) => {
   return (
     <div className={styles.box}>
@@ -12,6 +15,11 @@ const Textarea = ({ label, placeholder }) => {
       />
     </div>
   );
+};
+
+Textarea.propTypes = {
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 export default Textarea;

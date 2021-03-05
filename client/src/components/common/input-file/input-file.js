@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import Button from '../button/button';
+import PropTypes from 'prop-types';
+
 import styles from './input-file.module.css';
+
 const InputFile = ({ label }) => {
   const [fileName, setFileName] = useState(null);
 
@@ -20,6 +22,10 @@ const InputFile = ({ label }) => {
       </div>
     </div>
   );
+};
+
+InputFile.propTypes = {
+  label: PropTypes.string,
 };
 
 export default InputFile;

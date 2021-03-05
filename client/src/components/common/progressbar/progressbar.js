@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './progressbar.module.css';
 
 const ProgressBar = ({ label, value }) => {
@@ -20,6 +22,11 @@ const ProgressBar = ({ label, value }) => {
       <span className={styles.procent}>{value}%</span>
     </div>
   );
+};
+
+ProgressBar.propTypes = {
+  label: PropTypes.string,
+  value: PropTypes.number,
 };
 
 export default ProgressBar;

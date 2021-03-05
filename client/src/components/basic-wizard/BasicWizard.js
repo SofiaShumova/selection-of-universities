@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './basicWizard.module.css';
 import { Button } from '../common';
 
@@ -36,6 +38,10 @@ const BasicWizard = ({ children }) => {
       </div>
     </>
   );
+};
+
+BasicWizard.propTypes = {
+  children: PropTypes.node,
 };
 
 export default BasicWizard;

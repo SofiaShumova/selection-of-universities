@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './area.module.css';
 
 const Area = ({ left, right }) => {
@@ -8,6 +10,11 @@ const Area = ({ left, right }) => {
       <div className={styles.right}>{right}</div>
     </div>
   );
+};
+
+Area.propTypes = {
+  left: PropTypes.node,
+  right: PropTypes.node,
 };
 
 export default Area;

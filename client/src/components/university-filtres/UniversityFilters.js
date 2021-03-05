@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './universityFiltres.module.css';
 import TestService from '../../service/TestService';
 import { useStateWithPromise } from '../hooks';
@@ -41,6 +43,10 @@ const UniversityFiltres = ({ title }) => {
       <Checkbox label="Военная кафедра" />
     </div>
   );
+};
+
+UniversityFiltres.propTypes = {
+  title: PropTypes.string,
 };
 
 export default UniversityFiltres;

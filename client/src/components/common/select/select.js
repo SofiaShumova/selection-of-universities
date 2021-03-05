@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import arrowIcon from './arrow-down-sign-to-navigate.png';
 import cancelIcon from './cancel.png';
 import styles from './select.module.css';
@@ -93,6 +95,10 @@ const Select = ({ label, data, multiply }) => {
   );
 };
 
-export default Select;
+Select.propTypes = {
+  label: PropTypes.string,
+  data: PropTypes.array,
+  multiply: PropTypes.bool,
+};
 
-// TODO: warning key prop in MultiSelect and select ?!?!?!?!?
+export default Select;
