@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './university-card.module.css';
+import styles from './universityCard.module.css';
 
 const UniversityCard = ({ university: { _id, image, description, name } }) => {
   return (
