@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './checkbox.module.css';
 import tick from './tick.png';
 
-const Checkbox = ({ label, onChange, checked }) => {
-  const [state, setState] = useState(checked || false);
-  const handler = (e) => {
-    if (onChange) onChange(e.target.checked);
-    setState(e.target.checked);
+const Checkbox = ({ label, onChange = () => {}, checked = false }) => {
+  const [state, setState] = useState(checked);
+
+  const handler = ({ target: { checked } }) => {
+    onChange(checked);
+    setState(checked);
   };
 
   return (
@@ -23,6 +26,12 @@ const Checkbox = ({ label, onChange, checked }) => {
       <label className={styles.label}>{label}</label>
     </div>
   );
+};
+
+Checkbox.propTypes = {
+  label: PropTypes.string,
+  onChange: PropTypes.func,
+  checked: PropTypes.bool,
 };
 
 export default Checkbox;

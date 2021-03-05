@@ -7,6 +7,7 @@ import ProgressBar from './progressbar';
 import Select from './select';
 import Slider from './slider';
 import TextArea from './textarea';
+import Area from './area';
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   Select,
   Slider,
   TextArea,
+  Area,
 };

@@ -1,0 +1,102 @@
+    @keyframes ldio_szcmqfjmhys {
+        0% {
+            transform: translate(12px, 80px) scale(0);
+        }
+        25% {
+            transform: translate(12px, 80px) scale(0);
+        }
+        50% {
+            transform: translate(12px, 80px) scale(1);
+        }
+        75% {
+            transform: translate(80px, 80px) scale(1);
+        }
+        100% {
+            transform: translate(148px, 80px) scale(1);
+        }
+    }
+    
+    @keyframes ldio_szcmqfjmhys-r {
+        0% {
+            transform: translate(148px, 80px) scale(1);
+        }
+        100% {
+            transform: translate(148px, 80px) scale(0);
+        }
+    }
+    
+    @keyframes ldio_szcmqfjmhys-c {
+        0% {
+            background: #0a0a0a;
+        }
+        25% {
+            background: #f9ae5c;
+        }
+        50% {
+            background: #ffffff;
+        }
+        75% {
+            background: #28292f;
+        }
+        100% {
+            background: #0a0a0a;
+        }
+    }
+    
+    .ldio_szcmqfjmhys div {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transform: translate(80px, 80px) scale(1);
+        background: #0a0a0a;
+        animation: ldio_szcmqfjmhys 1s infinite cubic-bezier(0, 0.5, 0.5, 1);
+    }
+    
+    .ldio_szcmqfjmhys div:nth-child(1) {
+        background: #28292f;
+        transform: translate(148px, 80px) scale(1);
+        animation: ldio_szcmqfjmhys-r 0.25s infinite cubic-bezier(0, 0.5, 0.5, 1), ldio_szcmqfjmhys-c 1s infinite step-start;
+    }
+    
+    .ldio_szcmqfjmhys div:nth-child(2) {
+        animation-delay: -0.25s;
+        background: #0a0a0a;
+    }
+    
+    .ldio_szcmqfjmhys div:nth-child(3) {
+        animation-delay: -0.5s;
+        background: #28292f;
+    }
+    
+    .ldio_szcmqfjmhys div:nth-child(4) {
+        animation-delay: -0.75s;
+        background: #ffffff;
+    }
+    
+    .ldio_szcmqfjmhys div:nth-child(5) {
+        animation-delay: -1s;
+        background: #f9ae5c;
+    }
+    
+    .loadingio_spinner_ellipsis_bqgom1pmt5s {
+        width: 200px;
+        height: 200px;
+        display: flex;
+        overflow: hidden;
+        margin: auto;
+    }
+    
+    .ldio_szcmqfjmhys {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform: translateZ(0) scale(1);
+        backface-visibility: hidden;
+        transform-origin: 0 0;
+        /* see note above */
+    }
+    
+    .ldio_szcmqfjmhys div {
+        box-sizing: content-box;
+    }

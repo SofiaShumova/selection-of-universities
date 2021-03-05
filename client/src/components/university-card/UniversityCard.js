@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from './university-card.module.css';
+import PropTypes from 'prop-types';
+import styles from './universityCard.module.css';
 
 const UniversityCard = ({ university: { _id, image, description, name } }) => {
   return (
@@ -17,6 +18,15 @@ const UniversityCard = ({ university: { _id, image, description, name } }) => {
       </div>
     </a>
   );
+};
+
+UniversityCard.propTypes = {
+  university: PropTypes.shape({
+    _id: PropTypes.string,
+    image: PropTypes.string,
+    description: PropTypes.string,
+    name: PropTypes.string,
+  }),
 };
 
 export default UniversityCard;

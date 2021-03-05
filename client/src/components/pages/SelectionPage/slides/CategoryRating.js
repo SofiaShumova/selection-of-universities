@@ -1,5 +1,5 @@
 import React from 'react';
-import { Slider } from '../../common';
+import { Slider } from '../../../common';
 import styles from './selectionPage.module.css';
 
 const CategoryRating = ({ pairs, onChange }) => (

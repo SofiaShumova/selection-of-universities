@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './slider.module.css';
 
-const Slider = ({ startLabel, endLabel, initialValue, onChange }) => {
-  const [value, setValue] = useState(initialValue || 0);
+const Slider = ({ startLabel, endLabel, initialValue = 0, onChange }) => {
+  const [value, setValue] = useState(initialValue);
 
   return (
     <div className={styles.box}>
@@ -21,6 +23,13 @@ const Slider = ({ startLabel, endLabel, initialValue, onChange }) => {
       <span className={styles.label}> {endLabel}</span>
     </div>
   );
+};
+
+Slider.propTypes = {
+  startLabel: PropTypes.string,
+  endLabel: PropTypes.string,
+  initialValue: PropTypes.number,
+  onChange: PropTypes.func,
 };
 
 export default Slider;

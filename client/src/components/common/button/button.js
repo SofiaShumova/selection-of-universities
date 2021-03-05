@@ -1,19 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './button.module.css';
-const Button = ({ text, className, onClick = null, type = null }) => {
+
+const Button = ({ text, className, onClick = () => {}, type = '' }) => {
   return (
     <div className={`${styles.wrapper} ${className}`}>
-      <button
-        className={styles.button}
-        onClick={() => {
-          onClick && onClick();
-        }}
-        type={type ? type : ''}
-      >
+      <button className={styles.button} onClick={onClick} type={type}>
         {text}
       </button>
     </div>
   );
+};
+
+Button.propTypes = {
+  text: PropTypes.string,
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  type: PropTypes.string,
 };
 
 export default Button;

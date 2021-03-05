@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import Checkbox from '../checkbox/checkbox';
 import styles from './checkedInput.module.css';
 
@@ -12,6 +14,10 @@ const CheckedInput = ({ label }) => {
       {visible && <input className={styles.input} type="text" />}
     </div>
   );
+};
+
+CheckedInput.propTypes = {
+  label: PropTypes.string,
 };
 
 export default CheckedInput;

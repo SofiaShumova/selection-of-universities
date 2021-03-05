@@ -1,5 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './input.module.css';
+
 const Input = ({ label, placeholder, type = 'text', name }) => {
   return (
     <div className={styles.box}>
@@ -16,6 +19,13 @@ const Input = ({ label, placeholder, type = 'text', name }) => {
       />
     </div>
   );
+};
+
+Input.propTypes = {
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  type: PropTypes.string,
+  name: PropTypes.string,
 };
 
 export default Input;
