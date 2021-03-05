@@ -11,37 +11,37 @@ export default class TestService {
   ];
 
   _levelsOfPreparation = [
-    { name: 'Бакалавриат' },
-    { name: 'Специалитет' },
-    { name: 'Магистратура' },
-    { name: 'Аспирантура' },
+    { _id: '1', name: 'Бакалавриат' },
+    { _id: '2', name: 'Специалитет' },
+    { _id: '3', name: 'Магистратура' },
+    { _id: '4', name: 'Аспирантура' },
   ];
 
   _disciplines = [
-    { name: 'Русский язык' },
-    { name: 'Математика' },
-    { name: 'География' },
-    { name: 'Биология' },
-    { name: 'Физика' },
-    { name: 'Информатика' },
-    { name: 'Химия' },
+    { _id: '1', name: 'Русский язык' },
+    { _id: '2', name: 'Математика' },
+    { _id: '3', name: 'География' },
+    { _id: '4', name: 'Биология' },
+    { _id: '5', name: 'Физика' },
+    { _id: '6', name: 'Информатика' },
+    { _id: '7', name: 'Химия' },
   ];
 
   _formsEducation = [
-    { name: 'Очная' },
-    { name: 'Заочная' },
-    { name: 'Дистанционная' },
-    { name: 'Очно-заочная' },
+    { _id: '1', name: 'Очная' },
+    { _id: '2', name: 'Заочная' },
+    { _id: '3', name: 'Дистанционная' },
+    { _id: '4', name: 'Очно-заочная' },
   ];
 
   _typesUniversity = [
-    { name: 'Государственный' },
-    { name: 'Негосударственный' },
+    { _id: '1', name: 'Государственный' },
+    { _id: '2', name: 'Негосударственный' },
   ];
 
   _universities = [
     {
-      _id: 123,
+      _id: '123',
       image,
       name:
         'Рязанский государственный радиотехнический университет им. В.Ф. Уткина',
@@ -52,40 +52,44 @@ export default class TestService {
 
   _categories = [
     {
-      _id: 1,
+      _id: '1',
       name: 'Критерии образования',
       description: '',
       criterions: [
-        { _id: 1, name: 'Качество образования', description: '' },
-        { _id: 2, name: 'Сложность обучения', description: '' },
-        { _id: 3, name: 'Преподавательский состав', description: '' },
+        { _id: '1', name: 'Качество образования', description: '' },
+        { _id: '2', name: 'Сложность обучения', description: '' },
+        { _id: '3', name: 'Преподавательский состав', description: '' },
       ],
     },
     {
-      _id: 2,
+      _id: '2',
       name: 'Статусные критерии',
       description: '',
       criterions: [
-        { _id: 4, name: 'Статус', description: '' },
-        { _id: 5, name: 'Рейтинг', description: '' },
-        { _id: 6, name: 'Репутация', description: '' },
+        { _id: '4', name: 'Статус', description: '' },
+        { _id: '5', name: 'Рейтинг', description: '' },
+        { _id: '6', name: 'Репутация', description: '' },
       ],
     },
     {
-      _id: 3,
+      _id: '3',
       name: 'Критерии поступления',
       description: '',
       criterions: [
-        { _id: 7, name: 'Стоимость обучения', description: '' },
-        { _id: 8, name: 'Сложность вступительных испытаний', description: '' },
+        { _id: '7', name: 'Стоимость обучения', description: '' },
+        {
+          _id: '8',
+          name: 'Сложность вступительных испытаний',
+          description: '',
+        },
       ],
     },
     {
-      _id: 4,
+      _id: '4',
       name: 'Критерии внеучебной деятельности',
       description: '',
       criterions: [
-        { _id: 9, name: 'Конференции и олимпиады', description: '' },
+        { _id: '9', name: 'Конференции и олимпиады', description: '' },
       ],
     },
   ];
