@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 import styles from './universityFiltres.module.css';
 import TestService from '../../service/TestService';
-import { useStateWithPromise } from '../hooks';
+import { useRequest } from '../hooks';
 
 import { Select, Checkbox } from '../common';
 import ListInputs from '../list-of-checked-inputs';
+import Spinner from '../spinner';
 
 const UniversityFiltres = ({ title }) => {
   const {
@@ -18,12 +19,38 @@ const UniversityFiltres = ({ title }) => {
     getTypesUniversity,
   } = new TestService();
 
-  const [cities] = useStateWithPromise([], getCities);
-  const [programs] = useStateWithPromise([], getPrograms);
-  const [disciplines] = useStateWithPromise([], getDisciplines);
-  const [formsEducation] = useStateWithPromise([], getFormsEducation);
-  const [levelsOfPreparation] = useStateWithPromise([], getLevelsOfPreparation);
-  const [typesUniversity] = useStateWithPromise([], getTypesUniversity);
+  const { data: cities, isLoading: loadingCities } = useRequest([], getCities);
+  const { data: programs, isLoading: loadingPrograms } = useRequest(
+    [],
+    getPrograms
+  );
+  const { data: disciplines, isLoading: loadingDisciplines } = useRequest(
+    [],
+    getDisciplines
+  );
+  const { data: formsEducation, isLoading: loadingFormsEducation } = useRequest(
+    [],
+    getFormsEducation
+  );
+  const {
+    data: levelsOfPreparation,
+    isLoading: loadingLevelsOfPreparation,
+  } = useRequest([], getLevelsOfPreparation);
+  const {
+    data: typesUniversity,
+    isLoading: loadingTypesUniversity,
+  } = useRequest([], getTypesUniversity);
+
+  if (
+    loadingCities ||
+    loadingDisciplines ||
+    loadingFormsEducation ||
+    loadingLevelsOfPreparation ||
+    loadingPrograms ||
+    loadingTypesUniversity
+  ) {
+    return <Spinner />;
+  }
 
   return (
     <div>
