@@ -7,7 +7,7 @@ import Spinner from '../spinner';
 import Error from '../error';
 
 import TestService from '../../service/TestService';
-import useRequest from '../hooks/useRequest';
+import { useRequest } from '../hooks';
 
 const ListOfUniversities = () => {
   const { getUniversities } = new TestService();

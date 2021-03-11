@@ -1,2 +1,4 @@
 import useStateWithPromise from './useStateWithPromise';
-export { useStateWithPromise };
+import useRequest from './useRequest';
+
+export { useStateWithPromise, useRequest };
