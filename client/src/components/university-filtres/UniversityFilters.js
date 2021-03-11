@@ -9,7 +9,7 @@ import { Select, Checkbox } from '../common';
 import ListInputs from '../list-of-checked-inputs';
 import Spinner from '../spinner';
 
-const UniversityFiltres = ({ title }) => {
+const UniversityFiltres = ({ title, addFilter }) => {
   const {
     getCities,
     getPrograms,
@@ -55,25 +55,48 @@ const UniversityFiltres = ({ title }) => {
   return (
     <div>
       <h2 className={styles.title}>{title}</h2>
-      <Select label="Город" data={cities} />
-      <Select label="Направления подготовки" data={programs} multiply={true} />
+      <Select
+        label="Город"
+        data={cities}
+        onChange={(cities) => {
+          addFilter({ cities });
+        }}
+      />
+      {/* <Select label="Направления подготовки" data={programs} multiply={true} />
       <ListInputs data={disciplines} label="Предметы" />
       <Select label="Форма обучения" data={formsEducation} multiply={true} />
       <Select
         label="Уровень подготовки"
         data={levelsOfPreparation}
         multiply={true}
+      /> */}
+      <Select
+        label="Тип университета"
+        data={typesUniversity}
+        onChange={(typesUniversity) => {
+          addFilter({ typesUniversity });
+        }}
       />
-      <Select label="Тип университета" data={typesUniversity} />
-      <Checkbox label="Общежитие" />
-      <Checkbox label="Бюджетные места" />
-      <Checkbox label="Военная кафедра" />
+      <Checkbox
+        label="Общежитие"
+        onChange={(dormitory) => {
+          addFilter({ dormitory });
+        }}
+      />
+      {/* <Checkbox label="Бюджетные места" /> */}
+      <Checkbox
+        label="Военная кафедра"
+        onChange={(militaryDepartment) => {
+          addFilter({ militaryDepartment });
+        }}
+      />
     </div>
   );
 };
 
 UniversityFiltres.propTypes = {
   title: PropTypes.string,
+  addFilter: PropTypes.func,
 };
 
 export default UniversityFiltres;

@@ -12,7 +12,7 @@ import {
   ResultPage,
 } from './slides';
 
-import Error from '../../error';
+import ErrorIndicator from '../../error-indicator';
 import Spinner from '../../spinner';
 
 const SelectionPage = () => {
@@ -63,7 +63,7 @@ const SelectionPage = () => {
         {isLoading ? (
           <Spinner />
         ) : isError ? (
-          <Error />
+          <ErrorIndicator />
         ) : (
           <ParametrSelection
             categories={categories}
