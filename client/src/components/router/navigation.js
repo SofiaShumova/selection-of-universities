@@ -10,7 +10,15 @@ import LoginPage from '../pages/LoginPage';
 import icon from './user.png';
 import RegisterPage from '../pages/RegisterPage/index';
 
-export const navigation = (isAuth, { isExpert, isAdmin }) => {
+export const navigation = (user) => {
+  // TODO: using context???????
+  const authData = {
+    isExpert: user ? user.isExpert : false,
+    isAdmin: user ? user.isAdmin : false,
+  };
+
+  const { isAdmin, isExpert } = authData;
+
   const links = (
     <React.Fragment>
       <NavLink exact to="/">
@@ -20,7 +28,7 @@ export const navigation = (isAuth, { isExpert, isAdmin }) => {
       {isAdmin && <NavLink to="/administration">Администрирование</NavLink>}
       {isExpert && <NavLink to="/assessment">Экспертная оценка</NavLink>}
       <NavLink to="/about">О сервисе</NavLink>
-      <NavLink to={isAuth ? '/profile' : '/login'}>
+      <NavLink to={user ? '/profile' : '/login'}>
         <img src={icon} alt="user icon" />
       </NavLink>
     </React.Fragment>
@@ -45,7 +53,7 @@ export const navigation = (isAuth, { isExpert, isAdmin }) => {
       <Route path="/about">
         <AboutPage />
       </Route>
-      {isAuth && (
+      {user && (
         <Route path="/profile">
           <ProfilePage />
         </Route>
