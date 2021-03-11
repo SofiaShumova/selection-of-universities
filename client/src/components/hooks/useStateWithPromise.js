@@ -5,7 +5,8 @@ export default function useStateWithPromise(initialValue, callback) {
 
   useEffect(() => {
     callback().then((data) => setState(data));
+    return () => {};
   }, []);
 
-  return [state];
+  return [state, setState];
 }
