@@ -41,12 +41,74 @@ export default class TestService {
 
   _universities = [
     {
-      _id: '123',
+      _id: '1',
       image,
+      city: { _id: '1', name: 'Рязань' },
+      type: { _id: '1', name: 'Государственный' },
+      militaryDepartment: true,
+      dormitory: true,
       name:
         'Рязанский государственный радиотехнический университет им. В.Ф. Уткина',
       description:
         'В настоящее время Университет занимает достойное место среди ведущих технических вузов страны в сфере подготовки конкурентоспособных специалистов в области радиоэлектроники, информационно-телекоммуникационных технологий, в том числе информационной безопасности. Стратегическая миссия РГРТУ - содействие динамичному развитию научно-технологического комплекса страны, обеспечение его конкурентоспособными специалистами с современным элитным высшим образованием и высококвалифицированными научными кадрами в области информационно-коммуникационных технологий и радиоэлектроники.',
+    },
+    {
+      _id: '2',
+      image,
+      city: { _id: '1', name: 'Рязань' },
+      type: { _id: '1', name: 'Государственный' },
+      militaryDepartment: false,
+      dormitory: true,
+      name: 'РГУ ИМЕНИ С.А. ЕСЕНИНА',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo provident perspiciatis voluptates velit in fuga nihil quos, sint dicta, asperiores aliquid optio tenetur officia nam harum eum veniam error earum!',
+    },
+    {
+      _id: '3',
+      image,
+      type: { _id: '2', name: 'Негосударственный' },
+      militaryDepartment: false,
+      city: { _id: '1', name: 'Рязань' },
+      dormitory: true,
+      name:
+        'Рязанский государственный агротехнологический университет им. П.А. Костычева',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo provident perspiciatis voluptates velit in fuga nihil quos, sint dicta, asperiores aliquid optio tenetur officia nam harum eum veniam error earum!',
+    },
+    {
+      _id: '4',
+      image,
+      type: { _id: '1', name: 'Государственный' },
+      city: { _id: '1', name: 'Рязань' },
+      militaryDepartment: true,
+      dormitory: false,
+      name:
+        'Академия права и управления Федеральной службы исполнения наказаний',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo provident perspiciatis voluptates velit in fuga nihil quos, sint dicta, asperiores aliquid optio tenetur officia nam harum eum veniam error earum!',
+    },
+    {
+      _id: '5',
+      image,
+      city: { _id: '2', name: 'Москва' },
+      type: { _id: '1', name: 'Государственный' },
+      militaryDepartment: true,
+      dormitory: true,
+      name:
+        'Московский государственный технический университет им. Н.Э. Баумана',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo provident perspiciatis voluptates velit in fuga nihil quos, sint dicta, asperiores aliquid optio tenetur officia nam harum eum veniam error earum!',
+    },
+    {
+      _id: '6',
+      image,
+      type: { _id: '1', name: 'Государственный' },
+      city: { _id: '2', name: 'Москва' },
+      militaryDepartment: false,
+      dormitory: true,
+      name: 'Российский государственный социальный университет',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo provident perspiciatis voluptates velit in fuga nihil quos, sint dicta, asperiores aliquid optio tenetur officia nam harum eum veniam error earum!',
     },
   ];
 
@@ -119,10 +181,14 @@ export default class TestService {
   };
 
   getUniversities = async () => {
-    return this._universities;
+    return new Promise((res, rej) => {
+      setTimeout(() => res(this._universities), 3000);
+    });
   };
 
   getCategories = async () => {
-    return this._categories;
+    return new Promise((res, rej) => {
+      setTimeout(() => res(this._categories), 3000);
+    });
   };
 }
