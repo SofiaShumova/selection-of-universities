@@ -4,7 +4,7 @@ import { Input } from '../common';
 import UniversityCard from '../university-card';
 
 import Spinner from '../spinner';
-import Error from '../error';
+import ErrorIndicator from '../error-indicator';
 
 import TestService from '../../service/TestService';
 import { useRequest } from '../hooks';
@@ -22,7 +22,7 @@ const ListOfUniversities = () => {
   }
 
   if (isError) {
-    return <Error />;
+    return <ErrorIndicator />;
   }
 
   return (
