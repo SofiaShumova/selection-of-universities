@@ -30,16 +30,21 @@ const MultiSelect = ({ items, removeItem }) => {
   );
 };
 
-const Select = ({ label, data, multiply }) => {
+const Select = ({ label, data, multiply, onChange }) => {
   const [selectedValue, setSelectedValue] = useState(multiply ? [] : null);
   const [isOpen, setIsOpen] = useState(false);
 
+  const updateSelectedValue = (selected) => {
+    setSelectedValue(selected);
+    onChange(selected);
+  };
+
   const selectItem = (item) => {
     if (multiply) {
-      setSelectedValue([...selectedValue, item]);
+      updateSelectedValue([...selectedValue, item]);
     } else {
       if (selectedValue) selectedValue.selected = false;
-      setSelectedValue(item);
+      updateSelectedValue(item);
       setIsOpen(!isOpen);
     }
 
@@ -49,7 +54,9 @@ const Select = ({ label, data, multiply }) => {
   const removeItem = (item) => {
     if (multiply) {
       item.selected = false;
-      setSelectedValue(selectedValue.filter((value) => value._id !== item._id));
+      updateSelectedValue(
+        selectedValue.filter((value) => value._id !== item._id)
+      );
     }
   };
 
@@ -99,6 +106,7 @@ Select.propTypes = {
   label: PropTypes.string,
   data: PropTypes.array,
   multiply: PropTypes.bool,
+  onChange: PropTypes.func,
 };
 
 export default Select;
