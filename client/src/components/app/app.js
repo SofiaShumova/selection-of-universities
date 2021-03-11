@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { UserContext } from '../context';
 import { navigation } from '../router/navigation';
 import Header from '../header/Header';
+import ErrorBoundry from '../error-boundary/ErrorBoundary';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -16,7 +17,9 @@ const App = () => {
       <Router>
         <div className="wrapper">
           <Header>{links}</Header>
-          <Routes />
+          <ErrorBoundry>
+            <Routes />
+          </ErrorBoundry>
         </div>
       </Router>
     </UserContext.Provider>
