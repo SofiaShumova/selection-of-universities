@@ -1,10 +1,30 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { Input } from '../common';
 import UniversityCard from '../university-card';
 
-const ListOfUniversities = ({ data }) => {
+import Spinner from '../spinner';
+import Error from '../error';
+
+import TestService from '../../service/TestService';
+import useRequest from '../hooks/useRequest';
+
+const ListOfUniversities = () => {
+  const { getUniversities } = new TestService();
+
+  const { isLoading, isError, data, updateRequest } = useRequest(
+    [],
+    getUniversities
+  );
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (isError) {
+    return <Error />;
+  }
+
   return (
     <div>
       <Input placeholder="Поиск..." />
@@ -13,10 +33,6 @@ const ListOfUniversities = ({ data }) => {
       })}
     </div>
   );
-};
-
-ListOfUniversities.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ListOfUniversities;
