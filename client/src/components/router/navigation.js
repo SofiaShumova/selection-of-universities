@@ -26,11 +26,9 @@ export const navigation = (isAuth, { isExpert, isAdmin }) => {
     </React.Fragment>
   );
 
-  const routes = (
+  const Routes = () => (
     <Switch>
-      <Route exact path="/">
-        <MainPage />
-      </Route>
+      <Route exact path="/" component={MainPage} />
       <Route path="/selection">
         <SelectionPage />
       </Route>
@@ -60,5 +58,6 @@ export const navigation = (isAuth, { isExpert, isAdmin }) => {
       </Route>
     </Switch>
   );
-  return { routes, links };
+
+  return { Routes, links };
 };

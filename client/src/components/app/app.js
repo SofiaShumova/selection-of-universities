@@ -13,12 +13,12 @@ const user = {
 };
 
 const App = () => {
-  const { routes, links } = navigation(isAuth, user);
+  const { Routes, links } = navigation(isAuth, user);
   return (
     <Router>
       <div className="wrapper">
         <Header>{links}</Header>
-        <div>{routes}</div>
+        <Routes />
       </div>
     </Router>
   );
