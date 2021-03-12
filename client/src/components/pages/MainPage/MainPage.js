@@ -7,7 +7,7 @@ import ListOfUniversities from '../../list-of-universities';
 
 const MainPage = () => {
   const [filters, setFilters] = useState({});
-  // use effect dont working in child element
+
   return (
     <div className={styles.wrapper}>
       <Area
@@ -15,7 +15,7 @@ const MainPage = () => {
         right={
           <UniversityFiltres
             title="Фильтры"
-            addFilter={(filter) => setFilters(Object.assign(filters, filter))}
+            toggleFilter={(filter) => setFilters({ ...filters, ...filter })}
           />
         }
       />

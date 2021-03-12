@@ -9,7 +9,7 @@ import { Select, Checkbox } from '../common';
 import ListInputs from '../list-of-checked-inputs';
 import Spinner from '../spinner';
 
-const UniversityFiltres = ({ title, addFilter }) => {
+const UniversityFiltres = ({ title, toggleFilter = () => {} }) => {
   const {
     getCities,
     getPrograms,
@@ -58,8 +58,8 @@ const UniversityFiltres = ({ title, addFilter }) => {
       <Select
         label="Город"
         data={cities}
-        onChange={(cities) => {
-          addFilter({ cities });
+        onChange={(city) => {
+          toggleFilter({ city });
         }}
       />
       {/* <Select label="Направления подготовки" data={programs} multiply={true} />
@@ -73,21 +73,21 @@ const UniversityFiltres = ({ title, addFilter }) => {
       <Select
         label="Тип университета"
         data={typesUniversity}
-        onChange={(typesUniversity) => {
-          addFilter({ typesUniversity });
+        onChange={(type) => {
+          toggleFilter({ type });
         }}
       />
       <Checkbox
         label="Общежитие"
         onChange={(dormitory) => {
-          addFilter({ dormitory });
+          toggleFilter({ dormitory });
         }}
       />
       {/* <Checkbox label="Бюджетные места" /> */}
       <Checkbox
         label="Военная кафедра"
         onChange={(militaryDepartment) => {
-          addFilter({ militaryDepartment });
+          toggleFilter({ militaryDepartment });
         }}
       />
     </div>
