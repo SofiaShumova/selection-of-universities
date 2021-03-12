@@ -2,20 +2,20 @@ import { useState, useEffect, useReducer } from 'react';
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'init':
+    case 'INIT':
       return {
         ...state,
         isLoading: true,
         isError: false,
       };
-    case 'success':
+    case 'SUCCESS':
       return {
         ...state,
         isLoading: false,
         isError: false,
         data: action.data,
       };
-    case 'fail':
+    case 'FAIL':
       return {
         ...state,
         isLoading: false,
@@ -37,11 +37,11 @@ const useRequest = (initialData, promise) => {
 
   useEffect(() => {
     let cancelled = false;
-    dispatch({ type: 'init' });
+    dispatch({ type: 'INIT' });
 
     request()
-      .then((data) => !cancelled && dispatch({ type: 'success', data }))
-      .catch(() => !cancelled && dispatch({ type: 'fail' }));
+      .then((data) => !cancelled && dispatch({ type: 'SUCCESS', data }))
+      .catch(() => !cancelled && dispatch({ type: 'FAIL' }));
 
     return () => (cancelled = true);
   }, [request]);
