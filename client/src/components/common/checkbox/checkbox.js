@@ -4,9 +4,14 @@ import PropTypes from 'prop-types';
 import styles from './checkbox.module.css';
 import tick from './tick.png';
 
-const Checkbox = ({ label, onChange = () => {}, checked = false }) => {
-  const handler = ({ target: { checked } }) => {
-    onChange(checked);
+const Checkbox = ({ label, onChange = () => {}, checked = null }) => {
+  const [state, setState] = useState(false);
+  const handler = ({ target }) => {
+    onChange(target.checked);
+
+    if (checked === null) {
+      setState(target.checked);
+    }
   };
 
   return (
@@ -16,7 +21,7 @@ const Checkbox = ({ label, onChange = () => {}, checked = false }) => {
           type="checkbox"
           className={styles.checkbox_hidden}
           onChange={handler}
-          checked={checked}
+          checked={checked === null ? state : checked}
         />
         <img src={tick} alt="tick icon" className={styles.tick} />
       </div>

@@ -40,6 +40,8 @@ const Select = ({ label, data, multiply, onChange }) => {
   };
 
   const selectItem = (item) => {
+    item.selected = true;
+
     if (multiply) {
       updateSelectedValue([...selectedValue, item]);
     } else {
@@ -47,8 +49,6 @@ const Select = ({ label, data, multiply, onChange }) => {
       updateSelectedValue(item);
       setIsOpen(!isOpen);
     }
-
-    item.selected = true;
   };
 
   const removeItem = (item) => {
