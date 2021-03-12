@@ -5,11 +5,8 @@ import styles from './checkbox.module.css';
 import tick from './tick.png';
 
 const Checkbox = ({ label, onChange = () => {}, checked = false }) => {
-  const [state, setState] = useState(checked);
-
   const handler = ({ target: { checked } }) => {
     onChange(checked);
-    setState(checked);
   };
 
   return (
@@ -19,7 +16,7 @@ const Checkbox = ({ label, onChange = () => {}, checked = false }) => {
           type="checkbox"
           className={styles.checkbox_hidden}
           onChange={handler}
-          checked={state}
+          checked={checked}
         />
         <img src={tick} alt="tick icon" className={styles.tick} />
       </div>

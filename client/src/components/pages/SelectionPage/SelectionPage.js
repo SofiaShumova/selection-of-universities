@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TestService from '../../../service/TestService';
 import getPairs from '../../../service/analysis/getPairs';
 import { useRequest } from '../../hooks';
@@ -20,35 +20,67 @@ const SelectionPage = () => {
 
   const [pairsOfCategories, setPairsOfCategories] = useState([]);
   const [pairsOfCriterions, setPairsOfCriterions] = useState([]);
-
+  const [selectedCategories, setSelectedCategories] = useState(new Set());
   const { data: categories, isLoading, isError, updateRequest } = useRequest(
     [],
     getCategories
   );
+  useEffect(() => {
+    setSelectedCategories(
+      categories.map((category) => Object.assign(category, { checked: false }))
+    );
+  }, [categories]); //потом может быть проблема при обновлении
 
   const setPairs = () => {
-    const { pairsOfCategories, pairsOfCriterions } = getPairs(categories);
+    const { pairsOfCategories, pairsOfCriterions } = getPairs(
+      selectedCategories
+    );
     setPairsOfCategories(pairsOfCategories);
     setPairsOfCriterions(pairsOfCriterions);
   };
 
-  const toggleCategory = (category) => {
-    if (!category.checked) {
-      category.checked = !category.checked;
-      // setCategories((prevState) => {
-      //   const item = prevState.find((item) => item._id === category);
-      //   return [...prevState, item];
-      // });
-      //category.criterions.forEach((criterion) => (criterion.checked = true));
-      // TODO: not working select criterion
-    } else {
-      category.checked = !category.checked;
+  const toggleCategory = (categoryId) => {
+    const index = selectedCategories.findIndex(
+      (item) => item._id === categoryId
+    );
+
+    if (~index) {
+      setSelectedCategories((array) => {
+        array[index].criterions = array[index].criterions.map((criterion) =>
+          Object.assign(criterion, {
+            checked: !array[index].checked,
+          })
+        );
+
+        array[index].checked = !array[index].checked;
+        return [...array];
+      });
     }
+
     setPairs();
   };
 
-  const toggleCriterion = (category, criterion) => {
-    criterion.checked = !criterion.checked;
+  const toggleCriterion = (categoryId, criterionId) => {
+    const indexCategory = selectedCategories.findIndex(
+      (item) => item._id === categoryId
+    );
+
+    if (~indexCategory) {
+      setSelectedCategories((array) => {
+        const indexCriterion = array[indexCategory].criterions.findIndex(
+          (item) => item._id === criterionId
+        );
+
+        if (~indexCategory) {
+          array[indexCategory].criterions[indexCriterion].checked = !array[
+            indexCategory
+          ].criterions[indexCriterion].checked;
+        }
+
+        return [...array];
+      });
+    }
+
     setPairs();
   };
 
@@ -66,7 +98,7 @@ const SelectionPage = () => {
           <ErrorIndicator />
         ) : (
           <ParametrSelection
-            categories={categories}
+            categories={selectedCategories}
             onChangeCategory={toggleCategory}
             onChangeCriterion={toggleCriterion}
           />
