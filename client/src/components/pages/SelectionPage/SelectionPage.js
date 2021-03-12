@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import TestService from '../../../service/TestService';
+import React, { useState, useEffect, useContext } from 'react';
+
 import getPairs from '../../../service/analysis/getPairs';
 import { useRequest } from '../../hooks';
+import { ServiceContext } from '../../context';
 
 import BasicWizard from '../../basic-wizard';
 import UniversityFiltres from '../../university-filtres';
@@ -16,7 +17,7 @@ import ErrorIndicator from '../../error-indicator';
 import Spinner from '../../spinner';
 
 const SelectionPage = () => {
-  const { getCategories } = new TestService();
+  const { getCategories } = useContext(ServiceContext);
 
   const [pairsOfCategories, setPairsOfCategories] = useState([]);
   const [pairsOfCriterions, setPairsOfCriterions] = useState([]);

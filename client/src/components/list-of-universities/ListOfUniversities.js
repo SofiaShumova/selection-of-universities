@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { Input } from '../common';
@@ -7,11 +7,11 @@ import UniversityCard from '../university-card';
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 
-import TestService from '../../service/TestService';
+import { ServiceContext } from '../context';
 import { useRequest } from '../hooks';
 
 const ListOfUniversities = ({ filters }) => {
-  const { getUniversities } = new TestService();
+  const { getUniversities } = useContext(ServiceContext);
 
   const { isLoading, isError, data, updateRequest } = useRequest(
     [],
@@ -20,8 +20,9 @@ const ListOfUniversities = ({ filters }) => {
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
+    console.log(filters);
     setFilteredData(getFilteredData(filters, data));
-  }, [filters]);
+  }, [filters, data]);
 
   const getFilteredData = (filters, data) => {
     let result = [...data];

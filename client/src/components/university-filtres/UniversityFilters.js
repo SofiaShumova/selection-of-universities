@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './universityFiltres.module.css';
-import TestService from '../../service/TestService';
+import { ServiceContext } from '../context';
 import { useRequest } from '../hooks';
 
 import { Select, Checkbox } from '../common';
@@ -17,7 +17,7 @@ const UniversityFiltres = ({ title, addFilter }) => {
     getFormsEducation,
     getLevelsOfPreparation,
     getTypesUniversity,
-  } = new TestService();
+  } = useContext(ServiceContext);
 
   const { data: cities, isLoading: loadingCities } = useRequest([], getCities);
   const { data: programs, isLoading: loadingPrograms } = useRequest(
