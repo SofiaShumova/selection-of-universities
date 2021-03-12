@@ -46,7 +46,7 @@ export default class TestService {
       city: { _id: '1', name: 'Рязань' },
       type: { _id: '1', name: 'Государственный' },
       militaryDepartment: true,
-      dormitory: true,
+      dormitory: false,
       name:
         'Рязанский государственный радиотехнический университет им. В.Ф. Уткина',
       description:
@@ -182,13 +182,13 @@ export default class TestService {
 
   getUniversities = async () => {
     return new Promise((res, rej) => {
-      setTimeout(() => res(this._universities), 3000);
+      setTimeout(() => res(this._universities), 1000);
     });
   };
 
   getCategories = async () => {
     return new Promise((res, rej) => {
-      setTimeout(() => res(this._categories), 3000);
+      setTimeout(() => res(this._categories), 1000);
     });
   };
 }

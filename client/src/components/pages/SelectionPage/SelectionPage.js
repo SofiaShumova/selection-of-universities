@@ -21,44 +21,45 @@ const SelectionPage = () => {
 
   const [pairsOfCategories, setPairsOfCategories] = useState([]);
   const [pairsOfCriterions, setPairsOfCriterions] = useState([]);
-  const [selectedCategories, setSelectedCategories] = useState(new Set());
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const { data: categories, isLoading, isError, updateRequest } = useRequest(
     [],
     getCategories
   );
   useEffect(() => {
     setSelectedCategories(
-      categories.map((category) => Object.assign(category, { checked: false }))
+      categories.map((category) => Object.assign({ checked: false }, category))
     );
   }, [categories]); //потом может быть проблема при обновлении
 
-  const setPairs = () => {
+  useEffect(() => {
     const { pairsOfCategories, pairsOfCriterions } = getPairs(
-      selectedCategories
+      JSON.stringify(selectedCategories)
     );
     setPairsOfCategories(pairsOfCategories);
     setPairsOfCriterions(pairsOfCriterions);
-  };
+  }, [selectedCategories]);
 
   const toggleCategory = (categoryId) => {
     const index = selectedCategories.findIndex(
       (item) => item._id === categoryId
     );
 
-    if (~index) {
+    if (index !== -1) {
       setSelectedCategories((array) => {
         array[index].criterions = array[index].criterions.map((criterion) =>
-          Object.assign(criterion, {
-            checked: !array[index].checked,
-          })
+          Object.assign(
+            {
+              checked: !array[index].checked,
+            },
+            criterion
+          )
         );
 
         array[index].checked = !array[index].checked;
         return [...array];
       });
     }
-
-    setPairs();
   };
 
   const toggleCriterion = (categoryId, criterionId) => {
@@ -81,8 +82,6 @@ const SelectionPage = () => {
         return [...array];
       });
     }
-
-    setPairs();
   };
 
   const rate = (pair, value) => {

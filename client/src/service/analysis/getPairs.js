@@ -1,8 +1,12 @@
 const getPairsOfCriterions = (selectedCategories) => {
-  const categories = selectedCategories.filter(
-    (category) => category.criterions.length > 1
-  );
+  const categories = selectedCategories.map((category) => {
+    category.criterions = category.criterions.filter(
+      (criterion) => criterion.checked
+    );
+    return category;
+  });
 
+  // console.log(categories);
   return categories.map((category) => {
     const pairs = [];
     const length = category.criterions.length;
@@ -38,15 +42,17 @@ const filterChecked = (array) => array.filter((item) => item.checked);
 
 export { getPairsOfCategories, getPairsOfCriterions, filterChecked };
 
-export default function getPairs(categories) {
-  const filtredCategories = filterChecked(categories);
+export default function getPairs(categoriesJSON) {
+  const copy = JSON.parse(categoriesJSON);
+
+  const filteredCategories = filterChecked(copy);
 
   return {
     pairsOfCategories:
-      filtredCategories.length > 1
-        ? getPairsOfCategories(filtredCategories)
+      filteredCategories.length > 1
+        ? getPairsOfCategories(filteredCategories)
         : [],
-    pairsOfCriterions: getPairsOfCriterions(filtredCategories),
+    pairsOfCriterions: getPairsOfCriterions(filteredCategories),
   };
 }
 
