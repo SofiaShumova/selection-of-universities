@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styles from './mainPage.module.css';
 
-import { Area } from '../../common';
-import UniversityFiltres from '../../university-filtres';
-import ListOfUniversities from '../../list-of-universities';
+import { Area } from '../../components/common';
+import UniversityFiltres from '../../components/university-filtres';
+import ListOfUniversities from '../../components/list-of-universities';
 
 const MainPage = () => {
   const [filters, setFilters] = useState({});

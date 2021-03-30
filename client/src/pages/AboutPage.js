@@ -1,7 +1,8 @@
 import React from 'react';
+import Spinner from '../components/spinner';
 
 const AboutPage = () => {
-  return <div>about</div>;
+  return <Spinner />;
 };
 
 export default AboutPage;

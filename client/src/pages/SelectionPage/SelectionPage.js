@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 
-import getPairs from '../../../service/analysis/getPairs';
+import getPairs from '../../services/analysis/getPairs';
 import { useRequest } from '../../hooks';
-import { ServiceContext } from '../../context';
+import { ServiceContext } from '../../contexts';
 
-import BasicWizard from '../../basic-wizard';
-import UniversityFiltres from '../../university-filtres';
+import BasicWizard from '../../components/basic-wizard';
+import UniversityFiltres from '../../components/university-filtres';
 import {
   ParametrSelection,
   CategoryRating,
@@ -13,8 +13,8 @@ import {
   ResultPage,
 } from './slides';
 
-import ErrorIndicator from '../../error-indicator';
-import Spinner from '../../spinner';
+import { ErrorIndicator } from '../../components/common';
+import Spinner from '../../components/spinner';
 
 const SelectionPage = () => {
   const { getCategories } = useContext(ServiceContext);

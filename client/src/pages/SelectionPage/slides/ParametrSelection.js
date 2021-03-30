@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './selectionPage.module.css';
-import GroupedCheckboxes from '../../../grouped-checkboxes/GroupedCheckboxes';
+import GroupedCheckboxes from '../../../components/grouped-checkboxes';
 
 const ParametrSelection = ({
   categories,
