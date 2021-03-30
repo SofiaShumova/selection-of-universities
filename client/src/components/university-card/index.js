@@ -1,2 +1,2 @@
-import UniversityCard from './UniversityCard';
+import UniversityCard from './university-card';
 export default UniversityCard;

@@ -1,2 +1,2 @@
-import Area from './Area';
+import Area from './area';
 export default Area;

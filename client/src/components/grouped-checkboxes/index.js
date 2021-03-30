@@ -1,2 +1,2 @@
-import GroupedCheckboxes from './GroupedCheckboxes';
+import GroupedCheckboxes from './grouped-checkboxes';
 export default GroupedCheckboxes;

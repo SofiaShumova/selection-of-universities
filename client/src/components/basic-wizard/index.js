@@ -1,2 +1,2 @@
-import BasicWizard from './BasicWizard';
+import BasicWizard from './basic-wizard';
 export default BasicWizard;

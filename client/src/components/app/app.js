@@ -1,26 +1,32 @@
 import React from 'react';
-import './app.css';
-
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { navigation } from '../router/navigation';
-import Header from '../header/Header';
+import { AuthProvider } from '../../contexts/auth-context';
+import { ServiceProvider } from '../../contexts/service-context';
 
-const isAuth = false;
-const user = {
-  isExpert: false,
-  isAdmin: false,
-};
+import { Links, Routes } from '../../router/navigation';
+
+import Header from '../header/header';
+import ErrorBoundary from '../error-boundary/error-boundary';
+
+import './app.css';
 
 const App = () => {
-  const { routes, links } = navigation(isAuth, user);
   return (
-    <Router>
-      <div className="wrapper">
-        <Header>{links}</Header>
-        <div>{routes}</div>
-      </div>
-    </Router>
+    <ServiceProvider>
+      <AuthProvider>
+        <Router>
+          <div className="wrapper">
+            <Header>
+              <Links />
+            </Header>
+            <ErrorBoundary>
+              <Routes />
+            </ErrorBoundary>
+          </div>
+        </Router>
+      </AuthProvider>
+    </ServiceProvider>
   );
 };
 
