@@ -3,10 +3,10 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import { UserContext, ServiceContext } from '../../contexts';
 import { navigation } from '../../router/navigation';
-import TestService from '../../services/TestService';
+import TestService from '../../services/test-service';
 
-import Header from '../header/Header';
-import ErrorBoundary from '../error-boundary/ErrorBoundary';
+import Header from '../header/header';
+import ErrorBoundary from '../error-boundary/error-boundary';
 
 import './app.css';
 

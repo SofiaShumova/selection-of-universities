@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 
-import getPairs from '../../services/analysis/getPairs';
+import getPairs from '../../services/analysis/get-pairs';
 import { useRequest } from '../../hooks';
 import { ServiceContext } from '../../contexts';
 

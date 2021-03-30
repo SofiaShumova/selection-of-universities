@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { CheckedInput } from '../common';
-import styles from './ListInputs.module.css';
+import styles from './list-inputs.module.css';
 
 const ListInputs = ({ data, label, height = '300px' }) => {
   return (

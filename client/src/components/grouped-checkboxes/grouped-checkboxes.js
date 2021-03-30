@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Checkbox } from '../common';
-import styles from './groupedCheckboxes.module.css';
+import styles from './grouped-checkboxes.module.css';
 
 const GroupedCheckboxes = ({
   category,

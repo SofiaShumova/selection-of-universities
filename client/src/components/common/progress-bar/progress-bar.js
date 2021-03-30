@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './progressbar.module.css';
+import styles from './progress-bar.module.css';
 
 const ProgressBar = ({ label, value }) => {
   return (

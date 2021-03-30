@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './universityFilters.module.css';
+import styles from './university-filters.module.css';
 import { ServiceContext } from '../../contexts';
 import { useRequest } from '../../hooks';
 

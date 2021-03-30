@@ -1,2 +1,2 @@
-import UniversityFiltres from './UniversityFilters';
+import UniversityFiltres from './university-filters';
 export default UniversityFiltres;

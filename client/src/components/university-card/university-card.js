@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './universityCard.module.css';
+import styles from './university-card.module.css';
 
 const UniversityCard = ({ university: { _id, image, description, name } }) => {
   return (

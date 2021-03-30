@@ -1,11 +1,11 @@
-import MainPage from './MainPage';
-import RegisterPage from './RegisterPage';
-import SelectionPage from './SelectionPage';
-import AdministrationPage from './AdministrationPage';
-import AssessmentPage from './AssessmentPage';
-import AboutPage from './AboutPage';
-import ProfilePage from './ProfilePage';
-import LoginPage from './LoginPage';
+import MainPage from './main-page';
+import RegisterPage from './register-page';
+import SelectionPage from './selection-page';
+import AdministrationPage from './administration-page';
+import AssessmentPage from './assessment-page';
+import AboutPage from './about-page';
+import ProfilePage from './profile-page';
+import LoginPage from './login-page';
 
 export {
   MainPage,

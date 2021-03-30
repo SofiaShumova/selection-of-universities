@@ -1,2 +1,2 @@
-import ListInputs from './ListInputs';
+import ListInputs from './list-inputs';
 export default ListInputs;

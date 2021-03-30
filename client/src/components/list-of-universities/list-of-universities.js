@@ -9,7 +9,7 @@ import ErrorIndicator from '../common/error-indicator';
 
 import { ServiceContext } from '../../contexts';
 import { useRequest } from '../../hooks';
-import { getFilteredData } from './getFilteredData';
+import { getFilteredData } from './get-filtered-data';
 
 const ListOfUniversities = ({ filters }) => {
   const { getUniversities } = useContext(ServiceContext);

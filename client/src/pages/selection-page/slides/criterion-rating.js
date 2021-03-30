@@ -1,6 +1,6 @@
 import React from 'react';
 import { Slider } from '../../../components/common';
-import styles from './selectionPage.module.css';
+import styles from './selection-page.module.css';
 
 const CriterionRating = ({ categories, onChange }) => {
   return (

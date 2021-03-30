@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './basicWizard.module.css';
+import styles from './basic-wizard.module.css';
 import { Button } from '../common';
 
 const BasicWizard = ({ children }) => {

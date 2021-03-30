@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Checkbox from '../checkbox/checkbox';
-import styles from './checkedInput.module.css';
+import styles from './checked-input.module.css';
 
 const CheckedInput = ({ label }) => {
   const [visible, setVisible] = useState(false);

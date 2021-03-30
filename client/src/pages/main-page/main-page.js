@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './mainPage.module.css';
+import styles from './main-page.module.css';
 
 import { Area } from '../../components/common';
 import UniversityFilters from '../../components/university-filters';

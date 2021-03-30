@@ -1,2 +1,2 @@
-import ListOfUniversities from './ListOfUniversities';
+import ListOfUniversities from './list-of-universities';
 export default ListOfUniversities;
