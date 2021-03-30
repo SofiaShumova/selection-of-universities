@@ -8,6 +8,7 @@ import Select from './select';
 import Slider from './slider';
 import TextArea from './textarea';
 import Area from './area';
+import ErrorIndicator from './error-indicator';
 
 export {
   Button,
@@ -20,4 +21,5 @@ export {
   Slider,
   TextArea,
   Area,
+  ErrorIndicator,
 };
