@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './mainPage.module.css';
 
 import { Area } from '../../components/common';
-import UniversityFiltres from '../../components/university-filtres';
+import UniversityFilters from '../../components/university-filters';
 import ListOfUniversities from '../../components/list-of-universities';
 
 const MainPage = () => {
@@ -13,7 +13,7 @@ const MainPage = () => {
       <Area
         left={<ListOfUniversities filters={filters} />}
         right={
-          <UniversityFiltres
+          <UniversityFilters
             title="Фильтры"
             toggleFilter={(filter) => setFilters({ ...filters, ...filter })}
           />

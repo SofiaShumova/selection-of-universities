@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './universityFiltres.module.css';
-import { ServiceContext } from '../context';
-import { useRequest } from '../hooks';
+import styles from './universityFilters.module.css';
+import { ServiceContext } from '../../contexts';
+import { useRequest } from '../../hooks';
 
 import { Select, Checkbox } from '../common';
 import ListInputs from '../list-of-checked-inputs';

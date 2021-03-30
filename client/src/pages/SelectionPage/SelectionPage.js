@@ -5,7 +5,7 @@ import { useRequest } from '../../hooks';
 import { ServiceContext } from '../../contexts';
 
 import BasicWizard from '../../components/basic-wizard';
-import UniversityFiltres from '../../components/university-filtres';
+import UniversityFilters from '../../components/university-filters';
 import {
   ParametrSelection,
   CategoryRating,
@@ -91,7 +91,7 @@ const SelectionPage = () => {
   return (
     <div>
       <BasicWizard>
-        <UniversityFiltres title="Фильтры для подбора" />
+        <UniversityFilters title="Фильтры для подбора" />
         {isLoading ? (
           <Spinner />
         ) : isError ? (

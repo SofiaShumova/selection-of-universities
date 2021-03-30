@@ -5,10 +5,10 @@ import { Input } from '../common';
 import UniversityCard from '../university-card';
 
 import Spinner from '../spinner';
-import ErrorIndicator from '../error-indicator';
+import ErrorIndicator from '../common/error-indicator';
 
-import { ServiceContext } from '../context';
-import { useRequest } from '../hooks';
+import { ServiceContext } from '../../contexts';
+import { useRequest } from '../../hooks';
 import { getFilteredData } from './getFilteredData';
 
 const ListOfUniversities = ({ filters }) => {

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { UserContext, ServiceContext } from '../context';
-import { navigation } from '../router/navigation';
-import TestService from '../../service/TestService';
+import { UserContext, ServiceContext } from '../../contexts';
+import { navigation } from '../../router/navigation';
+import TestService from '../../services/TestService';
 
 import Header from '../header/Header';
-import ErrorBoundry from '../error-boundary/ErrorBoundary';
+import ErrorBoundary from '../error-boundary/ErrorBoundary';
 
 import './app.css';
 
@@ -22,9 +22,9 @@ const App = () => {
         <Router>
           <div className="wrapper">
             <Header>{links}</Header>
-            <ErrorBoundry>
+            <ErrorBoundary>
               <Routes />
-            </ErrorBoundry>
+            </ErrorBoundary>
           </div>
         </Router>
       </UserContext.Provider>
