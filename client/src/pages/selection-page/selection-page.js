@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import getPairs from '../../services/analysis/get-pairs';
 import { useRequest } from '../../hooks';
-import { ServiceContext } from '../../contexts';
+import { serviceContext } from '../../contexts/service-context';
 
 import BasicWizard from '../../components/basic-wizard';
 import UniversityFilters from '../../components/university-filters';
@@ -17,7 +17,7 @@ import { ErrorIndicator } from '../../components/common';
 import Spinner from '../../components/spinner';
 
 const SelectionPage = () => {
-  const { getCategories } = useContext(ServiceContext);
+  const { getCategories } = useContext(serviceContext);
 
   const [pairsOfCategories, setPairsOfCategories] = useState([]);
   const [pairsOfCriterions, setPairsOfCriterions] = useState([]);

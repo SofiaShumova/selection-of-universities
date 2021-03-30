@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { UserContext, ServiceContext } from '../../contexts';
-import { navigation } from '../../router/navigation';
-import TestService from '../../services/test-service';
+import { AuthProvider } from '../../contexts/auth-context';
+import { ServiceProvider } from '../../contexts/service-context';
+
+import { Links, Routes } from '../../router/navigation';
 
 import Header from '../header/header';
 import ErrorBoundary from '../error-boundary/error-boundary';
@@ -11,24 +12,21 @@ import ErrorBoundary from '../error-boundary/error-boundary';
 import './app.css';
 
 const App = () => {
-  const [user, setUser] = useState(null);
-
-  const [service, setService] = useState(new TestService());
-  const { Routes, links } = navigation(user);
-
   return (
-    <ServiceContext.Provider value={service}>
-      <UserContext.Provider value={user}>
+    <ServiceProvider>
+      <AuthProvider>
         <Router>
           <div className="wrapper">
-            <Header>{links}</Header>
+            <Header>
+              <Links />
+            </Header>
             <ErrorBoundary>
               <Routes />
             </ErrorBoundary>
           </div>
         </Router>
-      </UserContext.Provider>
-    </ServiceContext.Provider>
+      </AuthProvider>
+    </ServiceProvider>
   );
 };
 

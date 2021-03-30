@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './university-filters.module.css';
-import { ServiceContext } from '../../contexts';
+import { serviceContext } from '../../contexts/service-context';
 import { useRequest } from '../../hooks';
 
 import { Select, Checkbox } from '../common';
 import ListInputs from '../list-of-checked-inputs';
 import Spinner from '../spinner';
 
-const UniversityFiltres = ({ title, toggleFilter = () => {} }) => {
+const UniversityFilters = ({ title, toggleFilter = () => {} }) => {
   const {
     getCities,
     getPrograms,
@@ -17,7 +17,7 @@ const UniversityFiltres = ({ title, toggleFilter = () => {} }) => {
     getFormsEducation,
     getLevelsOfPreparation,
     getTypesUniversity,
-  } = useContext(ServiceContext);
+  } = useContext(serviceContext);
 
   const { data: cities, isLoading: loadingCities } = useRequest([], getCities);
   const { data: programs, isLoading: loadingPrograms } = useRequest(
@@ -94,9 +94,9 @@ const UniversityFiltres = ({ title, toggleFilter = () => {} }) => {
   );
 };
 
-UniversityFiltres.propTypes = {
+UniversityFilters.propTypes = {
   title: PropTypes.string,
   addFilter: PropTypes.func,
 };
 
-export default UniversityFiltres;
+export default UniversityFilters;

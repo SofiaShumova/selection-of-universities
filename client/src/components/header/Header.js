@@ -6,6 +6,7 @@ import styles from './header.module.css';
 
 const Header = ({ children }) => {
   const createNavLink = (child) => {
+    console.log(child);
     if (!child) return;
 
     return (
@@ -14,13 +15,11 @@ const Header = ({ children }) => {
       </li>
     );
   };
-
+  console.log(children);
   return (
     <header className={styles.wrapper}>
       <img className={styles.logo} src={logo} alt="logo icon" />
-      <ul className={styles.list}>
-        {React.Children.map(children.props.children, createNavLink)}
-      </ul>
+      <ul className={styles.list}>{children}</ul>
     </header>
   );
 };

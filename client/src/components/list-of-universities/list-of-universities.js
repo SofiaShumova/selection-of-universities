@@ -7,12 +7,12 @@ import UniversityCard from '../university-card';
 import Spinner from '../spinner';
 import ErrorIndicator from '../common/error-indicator';
 
-import { ServiceContext } from '../../contexts';
+import { serviceContext } from '../../contexts/service-context';
 import { useRequest } from '../../hooks';
 import { getFilteredData } from './get-filtered-data';
 
 const ListOfUniversities = ({ filters }) => {
-  const { getUniversities } = useContext(ServiceContext);
+  const { getUniversities } = useContext(serviceContext);
 
   const { isLoading, isError, data, updateRequest } = useRequest(
     [],
