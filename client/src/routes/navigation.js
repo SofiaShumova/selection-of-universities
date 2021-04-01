@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import {
   MainPage,
@@ -10,44 +10,28 @@ import {
   ProfilePage,
   LoginPage,
 } from '../pages';
-import { authContext } from '../contexts/auth-context';
+
+import PrivateRoute from './private-route';
+import { roles } from './roles';
 
 const Routes = () => {
-  const user = useContext(authContext);
-  const { isExpert, isAdmin } = {
-    isExpert: user ? user.isExpert : false,
-    isAdmin: user ? user.isAdmin : false,
-  };
   return (
     <Switch>
       <Route exact path="/" component={MainPage} />
-      <Route path="/selection">
-        <SelectionPage />
-      </Route>
-      {isAdmin && (
-        <Route path="/administration">
-          <AdministrationPage />
-        </Route>
-      )}
-      {isExpert && (
-        <Route path="/assessment">
-          <AssessmentPage />
-        </Route>
-      )}
-      <Route path="/about">
-        <AboutPage />
-      </Route>
-      {user && (
-        <Route path="/profile">
-          <ProfilePage />
-        </Route>
-      )}
-      <Route path="/login">
-        <LoginPage />
-      </Route>
-      <Route path="/register">
-        <RegisterPage />
-      </Route>
+      <Route path="/selection" component={SelectionPage} />
+      <PrivateRoute
+        roles={[roles.admin]}
+        path="/administration"
+        component={AdministrationPage}
+      />
+      <PrivateRoute
+        roles={[roles.expert]}
+        path="/assessment"
+        component={AssessmentPage}
+      />
+      <Route path="/about" component={AboutPage} />
+      <PrivateRoute path="/profile" component={ProfilePage} />
+      <Route path="/register" component={RegisterPage} />
     </Switch>
   );
 };
