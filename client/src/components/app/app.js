@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthProvider } from '../../contexts/auth-context';
 import { ServiceProvider } from '../../contexts/service-context';
 
-import { Links, Routes } from '../../router/navigation';
+import { Routes } from '../../routes/navigation';
 
 import Header from '../header/header';
 import ErrorBoundary from '../error-boundary/error-boundary';
@@ -17,9 +17,7 @@ const App = () => {
       <AuthProvider>
         <Router>
           <div className="wrapper">
-            <Header>
-              <Links />
-            </Header>
+            <Header />
             <ErrorBoundary>
               <Routes />
             </ErrorBoundary>

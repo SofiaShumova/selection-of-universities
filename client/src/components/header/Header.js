@@ -1,25 +1,46 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import { authContext } from '../../contexts/auth-context';
+
 import logo from './cap.png';
+import icon from './user.png';
+
 import styles from './header.module.css';
 
 const Header = ({ children }) => {
-  const createNavLink = (child) => {
-    console.log(child);
-    if (!child) return;
+  const user = useContext(authContext);
+  const { isExpert, isAdmin } = {
+    isExpert: user ? user.isExpert : false,
+    isAdmin: user ? user.isAdmin : false,
+  };
 
+  const Link = ({ title, children, ...props }) => {
     return (
-      <li className={styles.link}>
-        {React.cloneElement(child, { activeClassName: styles.link_active })}
-      </li>
+      <NavLink
+        className={styles.link}
+        activeClassName={styles.link_active}
+        {...props}
+      >
+        {title || children}
+      </NavLink>
     );
   };
-  console.log(children);
+
   return (
     <header className={styles.wrapper}>
       <img className={styles.logo} src={logo} alt="logo icon" />
-      <ul className={styles.list}>{children}</ul>
+      <nav className={styles.list}>
+        <Link exact to="/" title="Главная" />
+        <Link to="/selection" title="Подбор ВУЗов" />
+        {isAdmin && <NavLink to="/administration">Администрирование</NavLink>}
+        {isExpert && <NavLink to="/assessment">Экспертная оценка</NavLink>}
+        <Link to="/about" title="О сервисе" />
+        <Link to={user ? '/profile' : '/login'}>
+          <img src={icon} alt="user icon" />
+        </Link>
+      </nav>
     </header>
   );
 };
