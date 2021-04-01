@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, PrivateLink } from './links';
+import { roles } from '../../routes/roles';
+
 import PropTypes from 'prop-types';
 
 import logo from './cap.png';
@@ -14,10 +16,10 @@ const Header = () => {
       <nav className={styles.list}>
         <Link exact to="/" title="Главная" />
         <Link to="/selection" title="Подбор ВУЗов" />
-        <PrivateLink roles={['ADMIN']} to="/administration">
+        <PrivateLink roles={[roles.admin]} to="/administration">
           Администрирование
         </PrivateLink>
-        <PrivateLink roles={['EXPERT']} to="/assessment">
+        <PrivateLink roles={[roles.expert]} to="/assessment">
           Экспертная оценка
         </PrivateLink>
 
