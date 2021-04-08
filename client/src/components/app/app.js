@@ -4,10 +4,10 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthProvider } from '../../contexts/auth-context';
 import { ServiceProvider } from '../../contexts/service-context';
 
-import { Routes } from '../../routes/navigation';
+import { Routes } from '../../routes';
 
-import Header from '../header/header';
-import ErrorBoundary from '../error-boundary/error-boundary';
+import Header from '../header';
+import ErrorBoundary from '../error-boundary';
 
 import './app.css';
 
