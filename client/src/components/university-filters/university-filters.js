@@ -63,13 +63,9 @@ const UniversityFilters = ({ title, toggleFilter = () => {} }) => {
         }}
       />
       <MultipeSelect label="Направления подготовки" data={programs} />
-      {/* <ListInputs data={disciplines} label="Предметы" />
-      <Select label="Форма обучения" data={formsEducation} multiply={true} />
-      <Select
-        label="Уровень подготовки"
-        data={levelsOfPreparation}
-        multiply={true}
-      /> */}
+      <ListInputs data={disciplines} label="Предметы" />
+      <MultipeSelect label="Форма обучения" data={formsEducation} />
+      <MultipeSelect label="Уровень подготовки" data={levelsOfPreparation} />
       <SingleSelect
         label="Тип университета"
         data={typesUniversity}
