@@ -1,27 +1,28 @@
 const { Schema, model, Types } = require('mongoose');
 
 const userSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-    city: {
-        type: { type: Types.ObjectId, ref: 'typeUser' },
-        required: false,
-    },
-    isAdmin: { type: Boolean, default: false, required: true },
-    isExpert: { type: Boolean, default: false, required: true },
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: Schema.Types.ObjectId,
+    ref: 'City',
+  },
+  role: {
+    type: String,
+  },
 });
 
-const User = model('User', userSchema);
+const User = model('User', userSchema, 'User');
 
 module.exports = User;
