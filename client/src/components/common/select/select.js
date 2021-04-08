@@ -5,11 +5,7 @@ import arrowIcon from './arrow-down-sign-to-navigate.png';
 import cancelIcon from './cancel.png';
 import styles from './select.module.css';
 
-const SingleSelect = ({ item: { name } }) => {
-  return <span className={styles.selected_value}>{name}</span>;
-};
-
-const MultiSelect = ({ items, removeItem }) => {
+const MultiplePreview = ({ items, removeItem }) => {
   return (
     <div className={styles.preview_block__multiply}>
       {items &&
@@ -30,83 +26,106 @@ const MultiSelect = ({ items, removeItem }) => {
   );
 };
 
-const Select = ({ label, data, multiply, onChange }) => {
-  const [selectedValue, setSelectedValue] = useState(multiply ? [] : null);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const updateSelectedValue = (selected) => {
-    setSelectedValue(selected);
-    onChange(selected);
-  };
-
-  const selectItem = (item) => {
-    item.selected = true;
-
-    if (multiply) {
-      updateSelectedValue([...selectedValue, item]);
-    } else {
-      if (selectedValue) selectedValue.selected = false;
-      updateSelectedValue(item);
-      setIsOpen(!isOpen);
-    }
-  };
-
-  const removeItem = (item) => {
-    if (multiply) {
-      item.selected = false;
-      updateSelectedValue(
-        selectedValue.filter((value) => value._id !== item._id)
-      );
-    }
-  };
-
-  const renderItems = (list) => {
-    return list.map((item) => {
-      const classes = `${styles.item} ${
-        item.selected ? styles.item_selected : ''
-      }`;
-
-      return (
-        <li key={item._id} className={classes} onClick={() => selectItem(item)}>
-          {item.name}
-        </li>
-      );
-    });
-  };
-
-  const preview = multiply ? (
-    <MultiSelect items={selectedValue} removeItem={removeItem} />
-  ) : (
-    <SingleSelect item={selectedValue} />
-  );
-
+const TemplateSelect = ({ label, preview, list }) => {
   return (
     <div className={styles.box}>
       <label className={styles.label}>{label}:</label>
       <div className={styles.border_wrapper}>
-        <input
-          checked={isOpen}
-          onChange={() => {
-            setIsOpen(!isOpen);
-          }}
-          type="checkbox"
-          className={styles.checkbox}
-        />
+        <input type="checkbox" className={styles.checkbox} />
         <div className={styles.preview_block}>
-          {selectedValue && preview}
+          {preview}
           <img src={arrowIcon} alt="arrow icon" className={styles.icon} />
         </div>
-        {data.length && <ul className={styles.list}>{renderItems(data)}</ul>}
+        {list}
       </div>
     </div>
   );
 };
 
-Select.propTypes = {
-  label: PropTypes.string,
-  data: PropTypes.array,
-  multiply: PropTypes.bool,
-  onChange: PropTypes.func,
+const MultipeSelect = ({
+  label,
+  data,
+  onChange = () => {},
+  initialValue = [],
+}) => {
+  const [value, setValue] = useState(initialValue);
+
+  const getData = () => {
+    if (!value.length) {
+      return data;
+    }
+
+    const itemsId = value.map((item) => item._id);
+    return data.filter((item) => !itemsId.includes(item._id));
+  };
+
+  const removeItem = ({ _id }) => {
+    setValue((prev) => prev.filter((item) => item._id !== _id));
+  };
+  return (
+    <TemplateSelect
+      label={label}
+      preview={
+        value && <MultiplePreview items={value} removeItem={removeItem} />
+      }
+      list={
+        data.length && (
+          <List
+            data={getData()}
+            onSelect={(item) => {
+              setValue((prev) => prev.concat(item));
+              onChange(value);
+            }}
+          />
+        )
+      }
+    />
+  );
 };
 
-export default Select;
+const SingleSelect = ({
+  label,
+  data,
+  onChange = () => {},
+  initialValue = null,
+}) => {
+  const [value, setValue] = useState(initialValue);
+
+  return (
+    <TemplateSelect
+      label={label}
+      preview={
+        value && <span className={styles.selected_value}>{value.name}</span>
+      }
+      list={
+        data.length && (
+          <List
+            data={value ? data.filter((item) => item._id !== value._id) : data}
+            onSelect={(item) => {
+              setValue(item);
+              onChange(item);
+            }}
+          />
+        )
+      }
+    />
+  );
+};
+
+const List = ({ data, onSelect }) => {
+  return (
+    <ul className={styles.list}>
+      {data.map((item) => (
+        <li
+          key={item._id}
+          className={styles.item}
+          onClick={() => onSelect(item)}
+        >
+          {item.name}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+export { SingleSelect, MultipeSelect };

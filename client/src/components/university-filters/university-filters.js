@@ -5,7 +5,7 @@ import styles from './university-filters.module.css';
 import { serviceContext } from '../../contexts/service-context';
 import { useRequest } from '../../hooks';
 
-import { Select, Checkbox } from '../common';
+import { MultipeSelect, SingleSelect, Checkbox } from '../common';
 import ListInputs from '../list-of-checked-inputs';
 import Spinner from '../spinner';
 
@@ -55,22 +55,22 @@ const UniversityFilters = ({ title, toggleFilter = () => {} }) => {
   return (
     <div>
       <h2 className={styles.title}>{title}</h2>
-      <Select
+      <SingleSelect
         label="Город"
         data={cities}
         onChange={(city) => {
           toggleFilter({ city });
         }}
       />
-      {/* <Select label="Направления подготовки" data={programs} multiply={true} />
-      <ListInputs data={disciplines} label="Предметы" />
+      <MultipeSelect label="Направления подготовки" data={programs} />
+      {/* <ListInputs data={disciplines} label="Предметы" />
       <Select label="Форма обучения" data={formsEducation} multiply={true} />
       <Select
         label="Уровень подготовки"
         data={levelsOfPreparation}
         multiply={true}
       /> */}
-      <Select
+      <SingleSelect
         label="Тип университета"
         data={typesUniversity}
         onChange={(type) => {

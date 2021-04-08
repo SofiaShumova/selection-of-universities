@@ -1,2 +1,2 @@
-import Select from './select';
-export default Select;
+import { SingleSelect, MultipeSelect } from './select';
+export { SingleSelect, MultipeSelect };
