@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const express = require('express');
+const cors = require('cors');
 
 const url =
   'mongodb+srv://user:123@cluster0.ti9uf.mongodb.net/universitydb?retryWrites=true&w=majority';
@@ -8,6 +9,7 @@ const PORT = 5000;
 const app = express();
 
 app.use(express.json({ extended: true }));
+app.use(cors());
 
 app.use('/api/discipline', require('./routes/descipline.routes'));
 app.use('/api/city', require('./routes/city.routes'));
