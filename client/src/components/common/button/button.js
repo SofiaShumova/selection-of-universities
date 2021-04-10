@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 
 import styles from './button.module.css';
 
-const Button = ({ text, className, onClick = () => {}, type = '' }) => {
+const Button = ({
+  text,
+  className,
+  onClick = () => {},
+  type = '',
+  children,
+}) => {
   return (
     <div className={`${styles.wrapper} ${className}`}>
       <button className={styles.button} onClick={onClick} type={type}>
-        {text}
+        {text || children}
       </button>
     </div>
   );
