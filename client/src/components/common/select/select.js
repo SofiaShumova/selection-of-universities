@@ -129,3 +129,5 @@ const List = ({ data, onSelect }) => {
 };
 
 export { SingleSelect, MultipeSelect };
+
+// TODO: если 0 эелемнтов для выбора закрывать селект
