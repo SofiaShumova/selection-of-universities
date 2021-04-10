@@ -13,4 +13,10 @@ export default class Service {
   getAllUniversity = async () => {
     return await this.getResourse(`/university/`);
   };
+  getAllCity = async () => {
+    return await this.getResourse(`/city/`);
+  };
+  getAllType = async () => {
+    return await this.getResourse(`/type/`);
+  };
 }

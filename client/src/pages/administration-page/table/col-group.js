@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuid } from 'uuid';
 
 export const ColGroup = ({ schema }) => {
   const count = Object.keys(schema).length;
@@ -6,7 +7,7 @@ export const ColGroup = ({ schema }) => {
   return (
     <colgroup>
       {Object.keys(schema).map(() => (
-        <col style={{ width: `${100 / count}%` }} />
+        <col key={uuid()} style={{ width: `${100 / count}%` }} />
       ))}
     </colgroup>
   );

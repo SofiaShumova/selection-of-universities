@@ -9,7 +9,7 @@ export const Row = ({ schema, item }) => {
         return (
           <td key={uuid()}>
             <Value
-              component={value.element ?? value}
+              component={value.display}
               prop={value.key ?? key}
               item={item}
             />
