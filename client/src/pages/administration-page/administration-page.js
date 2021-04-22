@@ -7,17 +7,16 @@ import Table from './table';
 import ModalForm from './modal-form';
 import { Button } from '../../components/common';
 import Spinner from '../../components/spinner';
+import { components } from './components';
 
-const { getAllUniversity, getAllCity, getAllType } = new Service();
-
-export const components = {
-  singleSelect: 'SingleSelect',
-  multipeSelect: 'MultipeSelect',
-  input: 'Input',
-  file: 'File',
-  textarea: 'Textarea',
-  checkbox: 'Checkbox',
-};
+const {
+  getAllUniversity,
+  getAllCity,
+  getAllType,
+  addUniversity,
+  updateUniversity,
+  removeUniversity,
+} = new Service();
 
 const universitySchema = {
   _id: { display: 'span' },
@@ -45,30 +44,66 @@ const universitySchema = {
 const AdministrationPage = () => {
   const { data, isLoading } = useRequest([], getAllUniversity);
   const [openForm, setOpenForm] = useState(false);
+  const [editableItem, setEditableItem] = useState(null);
   const toggleForm = () => setOpenForm(!openForm);
+
+  const onSave = async (item) => {
+    if (editableItem) {
+      setEditableItem(null);
+      updateUniversity(item);
+      toggleForm();
+    } else {
+      addUniversity(item);
+      toggleForm();
+    }
+  };
+
+  const changeItem = (item) => {
+    setEditableItem(item);
+    toggleForm();
+  };
+  const addItem = () => {
+    setEditableItem(null);
+    toggleForm();
+  };
+  const removeItem = async (item) => {
+    removeUniversity(item);
+  };
+
+  if (openForm) {
+    return (
+      <ModalForm
+        onClose={toggleForm}
+        initialValue={editableItem}
+        schema={universitySchema}
+        onSave={onSave}
+      />
+    );
+  }
+
   return (
     <div>
-      {openForm && (
-        <div
-          className={styles.shadow}
-          onClick={({ target }) =>
-            target.classList[0] === styles.shadow && toggleForm()
-          }
-        >
-          <ModalForm onClose={toggleForm} schema={universitySchema} />
-        </div>
-      )}
       <nav className={styles.nav}>
         <h2>University</h2>
-        <Button onClick={toggleForm}>Добавить запись</Button>
+        <Button onClick={addItem}>Добавить запись</Button>
       </nav>
       {isLoading ? (
         <Spinner />
       ) : (
-        <Table data={data} schema={universitySchema} />
+        <Table
+          data={data}
+          changeItem={changeItem}
+          removeItem={removeItem}
+          schema={universitySchema}
+        />
       )}
     </div>
   );
 };
 
 export default AdministrationPage;
+
+// update data in list
+// delete item
+// update item
+// toast
