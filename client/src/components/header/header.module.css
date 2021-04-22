@@ -28,3 +28,49 @@
 .link_active {
     font-weight: bold;
 }
+
+.administration {
+    margin-right: 55px;
+    position: relative;
+}
+
+.administration__label {
+    display: flex;
+    align-items: center;
+}
+
+.label__icon {
+    margin-left: 10px;
+    transition: linear 0.3s;
+}
+
+.checkbox {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.checkbox:checked~.administration__list {
+    display: block;
+}
+
+.checkbox:checked~.administration__label .label__icon {
+    transform: rotate(180deg);
+}
+
+.administration__list {
+    display: none;
+    position: absolute;
+    border: 1px solid black;
+    width: 300px;
+    list-style-type: none;
+    /* z-index: 3; */
+    background: white;
+    border-radius: 0 0 var(--border-radius-s) var(--border-radius-s);
+    margin-top: 10px;
+}
+
+.administration__item {}

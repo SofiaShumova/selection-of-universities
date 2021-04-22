@@ -36,9 +36,9 @@ const ModalForm = ({ onClose, schema, initialValue, onSave = () => {} }) => {
           {Object.entries(schema).map((data) => (
             <Field key={uuid()} data={data} targetData={item} />
           ))}
-          <div className="">
-            <Button type="submit" text="send" />
-            <Button type="reset" text="reset" />
+          <div className={styles.buttons}>
+            <Button type="submit" text="Сохранить" />
+            <Button type="reset" text="Сбросить" />
           </div>
         </form>
       </div>

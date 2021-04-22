@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import logo from './cap.png';
 import icon from './user.png';
+import arrow from './arrow.svg';
 
 import styles from './header.module.css';
 
@@ -16,9 +17,23 @@ const Header = () => {
       <nav className={styles.list}>
         <Link exact to="/" title="Главная" />
         <Link to="/selection" title="Подбор ВУЗов" />
-        <PrivateLink roles={[roles.admin]} to="/administration">
-          Администрирование
-        </PrivateLink>
+        <div className={styles.administration}>
+          <input className={styles.checkbox} type="checkbox" />
+          <div className={styles.administration__label}>
+            Администрирование
+            <img src={arrow} alt="arrow" className={styles.label__icon} />
+          </div>
+          <ul className={styles.administration__list}>
+            <li className={styles.administration__item}>
+              <PrivateLink
+                roles={[roles.admin]}
+                to="/administration/university"
+              >
+                University
+              </PrivateLink>
+            </li>
+          </ul>
+        </div>
         <PrivateLink roles={[roles.expert]} to="/assessment">
           Экспертная оценка
         </PrivateLink>

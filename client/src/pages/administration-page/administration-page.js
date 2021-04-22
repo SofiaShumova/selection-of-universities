@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Service from '../../services/api/service/service';
 import { useRequest } from '../../hooks';
 import styles from './administration-page.module.css';
 
@@ -7,42 +6,10 @@ import Table from './table';
 import ModalForm from './modal-form';
 import { Button } from '../../components/common';
 import Spinner from '../../components/spinner';
-import { components } from './components';
 
-const {
-  getAllUniversity,
-  getAllCity,
-  getAllType,
-  addUniversity,
-  updateUniversity,
-  removeUniversity,
-} = new Service();
-
-const universitySchema = {
-  _id: { display: 'span' },
-  name: { display: 'span', input: components.input },
-  description: { display: 'span', input: components.textarea },
-  city: {
-    key: 'name',
-    display: 'span',
-    input: components.singleSelect,
-    data: { promise: getAllCity, displayKey: 'name', selectedKey: '_id' },
-  },
-  phone: { display: 'span', input: components.input },
-  yearOfFoundation: { display: 'span', input: components.input },
-  type: {
-    key: 'name',
-    display: 'span',
-    input: components.singleSelect,
-    data: { promise: getAllType, displayKey: 'name', selectedKey: '_id' },
-  },
-  militaryDepartment: { display: 'span', input: components.checkbox },
-  dormitory: { display: 'span', input: components.checkbox },
-  site: { display: 'span', input: components.input },
-};
-
-const AdministrationPage = () => {
-  const { data, isLoading } = useRequest([], getAllUniversity);
+const AdministrationPage = ({ schema }) => {
+  const { _getData, _addItem, _updateItem, _removeItem } = schema;
+  const { data, isLoading } = useRequest([], _getData);
   const [openForm, setOpenForm] = useState(false);
   const [editableItem, setEditableItem] = useState(null);
   const toggleForm = () => setOpenForm(!openForm);
@@ -50,10 +17,10 @@ const AdministrationPage = () => {
   const onSave = async (item) => {
     if (editableItem) {
       setEditableItem(null);
-      updateUniversity(item);
+      _updateItem(item);
       toggleForm();
     } else {
-      addUniversity(item);
+      _addItem(item);
       toggleForm();
     }
   };
@@ -62,12 +29,9 @@ const AdministrationPage = () => {
     setEditableItem(item);
     toggleForm();
   };
-  const addItem = () => {
+  const addNewItem = () => {
     setEditableItem(null);
     toggleForm();
-  };
-  const removeItem = async (item) => {
-    removeUniversity(item);
   };
 
   if (openForm) {
@@ -75,7 +39,7 @@ const AdministrationPage = () => {
       <ModalForm
         onClose={toggleForm}
         initialValue={editableItem}
-        schema={universitySchema}
+        schema={schema}
         onSave={onSave}
       />
     );
@@ -85,7 +49,7 @@ const AdministrationPage = () => {
     <div>
       <nav className={styles.nav}>
         <h2>University</h2>
-        <Button onClick={addItem}>Добавить запись</Button>
+        <Button onClick={addNewItem}>Добавить запись</Button>
       </nav>
       {isLoading ? (
         <Spinner />
@@ -93,8 +57,8 @@ const AdministrationPage = () => {
         <Table
           data={data}
           changeItem={changeItem}
-          removeItem={removeItem}
-          schema={universitySchema}
+          removeItem={_removeItem}
+          schema={schema}
         />
       )}
     </div>
@@ -104,6 +68,4 @@ const AdministrationPage = () => {
 export default AdministrationPage;
 
 // update data in list
-// delete item
-// update item
 // toast
