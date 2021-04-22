@@ -1,0 +1,28 @@
+.row {}
+
+.row:hover .row__actions {
+    visibility: visible;
+}
+
+.row__actions {
+    visibility: hidden;
+    display: flex;
+    position: absolute;
+    padding: 30px 10px;
+}
+
+.row__icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.row__icon:last-child {
+    margin-right: 0;
+}
+
+.row__icon_remove {}
+
+.row__icon_edit {}
