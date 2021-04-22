@@ -6,7 +6,7 @@ import {
   SingleSelect,
   TextArea,
 } from '../../../components/common';
-import { components } from '../administration-page';
+import { components } from '../components';
 
 export function getComponent(name) {
   const {
