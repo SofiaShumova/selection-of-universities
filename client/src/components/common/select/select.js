@@ -74,6 +74,7 @@ const MultipeSelect = ({
             data={getData()}
             onSelect={(item) => {
               setValue((prev) => prev.concat(item));
+              console.log(value);
               onChange(value);
             }}
           />
@@ -87,9 +88,9 @@ const SingleSelect = ({
   label,
   data,
   onChange = () => {},
-  initialValue = null,
+  defaultValue = null,
 }) => {
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(defaultValue);
 
   return (
     <TemplateSelect

@@ -4,24 +4,15 @@ import PropTypes from 'prop-types';
 import styles from './checkbox.module.css';
 import tick from './tick.png';
 
-const Checkbox = ({ label, onChange = () => {}, checked = null }) => {
-  const [state, setState] = useState(false);
-  const handler = ({ target }) => {
-    onChange(target.checked);
-
-    if (checked === null) {
-      setState(target.checked);
-    }
-  };
-
+const Checkbox = ({ label, defaultValue, ...props }) => {
   return (
     <div className={styles.box}>
       <div className={styles.rectangle}>
         <input
           type="checkbox"
           className={styles.checkbox_hidden}
-          onChange={handler}
-          checked={checked === null ? state : checked}
+          defaultChecked={defaultValue}
+          {...props}
         />
         <img src={tick} alt="tick icon" className={styles.tick} />
       </div>
