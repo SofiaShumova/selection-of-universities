@@ -3,16 +3,11 @@ import PropTypes from 'prop-types';
 
 import styles from './textarea.module.css';
 
-const Textarea = ({ label, placeholder }) => {
+const Textarea = ({ label, ...props }) => {
   return (
     <div className={styles.box}>
       <label className={styles.label}>{label}:</label>
-      <textarea
-        className={styles.input}
-        type="text"
-        placeholder={placeholder}
-        rows={6}
-      />
+      <textarea className={styles.input} rows={6} {...props} />
     </div>
   );
 };

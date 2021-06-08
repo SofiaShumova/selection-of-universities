@@ -29,7 +29,11 @@ const requirementsSchema = new Schema({
   },
   disciplines: [
     {
-      discipline: { type: Schema.Types.ObjectId, ref: 'Discipline' },
+      discipline: {
+        type: Schema.Types.ObjectId,
+        ref: 'Discipline',
+        unique: true,
+      },
       score: { type: Number },
     },
   ],

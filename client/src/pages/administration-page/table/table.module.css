@@ -1,0 +1,31 @@
+.table {
+    margin-top: 40px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    border: solid black 1px;
+    text-align: center;
+    padding: 10px;
+    word-break: break-all;
+}
+
+.tbody tr {
+    transition: linear;
+    transition-duration: .4s;
+}
+
+.tbody tr:hover {
+    background: rgb(185, 184, 184);
+}
+
+.thead {}
+
+.tbody {}
+
+
+
+/* .td {} */
+/* .th {} */

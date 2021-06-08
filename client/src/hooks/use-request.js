@@ -26,27 +26,30 @@ const reducer = (state, action) => {
   }
 };
 
-const useRequest = (initialData, promise) => {
+const useRequest = (initialData, getData) => {
   const [state, dispatch] = useReducer(reducer, {
     data: initialData,
     isLoading: true,
     isError: null,
   });
 
-  const [request, setRequest] = useState(() => promise);
+  const [trigger, setTrigger] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     dispatch({ type: 'INIT' });
 
-    request()
+    getData()
       .then((data) => !cancelled && dispatch({ type: 'SUCCESS', data }))
       .catch(() => !cancelled && dispatch({ type: 'FAIL' }));
 
     return () => (cancelled = true);
-  }, [request]);
+  }, [getData, trigger]);
 
-  return { ...state, updateRequest: (req = promise) => setRequest(() => req) };
+  return {
+    ...state,
+    updateRequest: () => setTrigger((prev) => !prev),
+  };
 };
 
 export default useRequest;

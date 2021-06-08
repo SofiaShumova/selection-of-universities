@@ -3,6 +3,7 @@
 @value border: var(--border-common);
 @value border-light: var(--border-light);
 @value radius: var(--border-radius-xs);
+
 .border_wrapper {
     font-size: inherit;
     position: relative;
@@ -11,11 +12,11 @@
 }
 
 .list {
-    display: none;
+    display: block;
     z-index: 100;
     position: absolute;
     list-style-type: none;
-    margin: 5px 0 0 0;
+    margin: 0px 0 0 0;
     padding: 10px 20px;
     border: border-light;
     border-radius: radius;
@@ -46,19 +47,7 @@
     margin-left: auto;
 }
 
-.checkbox {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 2;
-}
-
-.checkbox:checked~.list {
-    display: block;
-}
-
-.checkbox:checked~.preview_block>.icon {
+.icon_rotate {
     transform: rotate(-180deg);
 }
 

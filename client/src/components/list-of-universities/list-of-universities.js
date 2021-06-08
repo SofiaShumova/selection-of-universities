@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useCallback } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Input } from '../common';
@@ -9,17 +9,34 @@ import ErrorIndicator from '../common/error-indicator';
 
 import { serviceContext } from '../../contexts/service-context';
 import { useRequest } from '../../hooks';
-import { getFilteredData } from './get-filtered-data';
+import { getFilteredData } from '../../services/analysis/get-filtered-data';
+
+import styles from './list-of-universities.module.css';
 
 const ListOfUniversities = ({ filters }) => {
-  const { getUniversities } = useContext(serviceContext);
+  const { getAllUniversity, getAllRequirements } = useContext(serviceContext);
 
-  const { isLoading, isError, data, updateRequest } = useRequest(
+  const { isLoading, isError, data } = useRequest([], getAllUniversity);
+  const { isLoading: isLoadingRequirements, data: requirements } = useRequest(
     [],
-    getUniversities
+    getAllRequirements
   );
 
-  if (isLoading) {
+  const [universities, setUniversities] = useState([]);
+
+  useEffect(() => {
+    if (data.length && requirements.length) {
+      setUniversities(
+        getFilteredData(filters, data, requirements).map((university) => {
+          return (
+            <UniversityCard key={university._id} university={university} />
+          );
+        })
+      );
+    }
+  }, [filters, data, requirements]);
+
+  if (isLoading || isLoadingRequirements) {
     return <Spinner />;
   }
 
@@ -30,17 +47,15 @@ const ListOfUniversities = ({ filters }) => {
   return (
     <div>
       <Input placeholder="Поиск..." />
-      {getFilteredData(filters, data).map((university) => {
-        return <UniversityCard key={university._id} university={university} />;
-      })}
+      {universities.length ? (
+        universities
+      ) : (
+        <div className={styles.message}>
+          По указанным параметрам ВУЗы не найдены ☹️
+        </div>
+      )}
     </div>
   );
 };
-
-// ListOfUniversities.PropTypes = {
-//   filters: PropTypes.shape({
-//     cities:
-//   }),
-// };
-
+ListOfUniversities.propTypes = { filters: PropTypes.object };
 export default ListOfUniversities;

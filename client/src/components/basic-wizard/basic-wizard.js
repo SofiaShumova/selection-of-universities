@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import styles from './basic-wizard.module.css';
 import { Button } from '../common';
 
-const BasicWizard = ({ children }) => {
+const BasicWizard = ({
+  children,
+  lastAction = () => true,
+  finalButtonText = 'Получить результат',
+}) => {
   const [current, setCurrent] = useState(0);
 
   const nextPage = () => {
@@ -29,12 +33,18 @@ const BasicWizard = ({ children }) => {
             text="Назад"
           />
         )}
-        {!isLast() && (
+        {isPenultimate() && (
           <Button
-            onClick={nextPage}
-            text={isPenultimate() ? 'Получить результат' : 'Далее'}
+            onClick={() => {
+              if (lastAction()) nextPage();
+            }}
+            text={finalButtonText}
           />
         )}
+        {(!isLast() && !isPenultimate() && (
+          <Button onClick={nextPage} text={'Далее'} />
+        )) ||
+          null}
       </div>
     </>
   );

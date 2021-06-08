@@ -37,6 +37,8 @@
     height: 90%;
     overflow-y: scroll;
     font-size: var(--common-font);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     composes: scroll-block from '../templates/scroll-block.css';
 }
 
@@ -51,6 +53,8 @@
 }
 
 .desc {
-    margin: 0;
+    margin: 0 10px 0 0;
     line-height: var(--line-height-s);
 }
+
+.prop {}

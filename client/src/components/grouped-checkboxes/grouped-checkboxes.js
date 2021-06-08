@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Checkbox } from '../common';
@@ -23,7 +23,8 @@ const GroupedCheckboxes = ({
               <Checkbox
                 label={criterion.name}
                 onChange={() => onChangeCriterion(category._id, criterion._id)}
-                checked={criterion.checked}
+                // checked={criterion.checked}
+                defaultValue={criterion.checked}
               />
             </li>
           ))}

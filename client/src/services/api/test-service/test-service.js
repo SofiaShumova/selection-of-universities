@@ -47,8 +47,7 @@ export default class TestService {
       type: { _id: '1', name: 'Государственный' },
       militaryDepartment: true,
       dormitory: false,
-      name:
-        'Рязанский государственный радиотехнический университет им. В.Ф. Уткина',
+      name: 'Рязанский государственный радиотехнический университет им. В.Ф. Уткина',
       description:
         'В настоящее время Университет занимает достойное место среди ведущих технических вузов страны в сфере подготовки конкурентоспособных специалистов в области радиоэлектроники, информационно-телекоммуникационных технологий, в том числе информационной безопасности. Стратегическая миссия РГРТУ - содействие динамичному развитию научно-технологического комплекса страны, обеспечение его конкурентоспособными специалистами с современным элитным высшим образованием и высококвалифицированными научными кадрами в области информационно-коммуникационных технологий и радиоэлектроники.',
     },
@@ -70,8 +69,7 @@ export default class TestService {
       militaryDepartment: false,
       city: { _id: '1', name: 'Рязань' },
       dormitory: true,
-      name:
-        'Рязанский государственный агротехнологический университет им. П.А. Костычева',
+      name: 'Рязанский государственный агротехнологический университет им. П.А. Костычева',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo provident perspiciatis voluptates velit in fuga nihil quos, sint dicta, asperiores aliquid optio tenetur officia nam harum eum veniam error earum!',
     },
@@ -82,8 +80,7 @@ export default class TestService {
       city: { _id: '1', name: 'Рязань' },
       militaryDepartment: true,
       dormitory: false,
-      name:
-        'Академия права и управления Федеральной службы исполнения наказаний',
+      name: 'Академия права и управления Федеральной службы исполнения наказаний',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo provident perspiciatis voluptates velit in fuga nihil quos, sint dicta, asperiores aliquid optio tenetur officia nam harum eum veniam error earum!',
     },
@@ -94,8 +91,7 @@ export default class TestService {
       type: { _id: '1', name: 'Государственный' },
       militaryDepartment: true,
       dormitory: true,
-      name:
-        'Московский государственный технический университет им. Н.Э. Баумана',
+      name: 'Московский государственный технический университет им. Н.Э. Баумана',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo provident perspiciatis voluptates velit in fuga nihil quos, sint dicta, asperiores aliquid optio tenetur officia nam harum eum veniam error earum!',
     },
@@ -156,37 +152,37 @@ export default class TestService {
     },
   ];
 
-  getCities = async () => {
+  getAllCity = async () => {
     return this._cities;
   };
 
-  getPrograms = async () => {
+  getAllTrainingProgram = async () => {
     return this._programs;
   };
 
-  getLevelsOfPreparation = async () => {
+  getAllLevelOfPreparation = async () => {
     return this._levelsOfPreparation;
   };
 
-  getFormsEducation = async () => {
+  getAllFormOfEducation = async () => {
     return this._formsEducation;
   };
 
-  getTypesUniversity = async () => {
+  getAllType = async () => {
     return this._typesUniversity;
   };
 
-  getDisciplines = async () => {
+  getAllDiscipline = async () => {
     return this._disciplines;
   };
 
-  getUniversities = async () => {
+  getAllUniversity = async () => {
     return new Promise((res, rej) => {
       setTimeout(() => res(this._universities), 1000);
     });
   };
 
-  getCategories = async () => {
+  getAllCategory = async () => {
     return new Promise((res, rej) => {
       setTimeout(() => res(this._categories), 1000);
     });

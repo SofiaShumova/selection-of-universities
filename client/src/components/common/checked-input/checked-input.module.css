@@ -13,3 +13,11 @@
     font-family: inherit;
     text-align: center;
 }
+
+.input:invalid {
+    color: red;
+}
+
+.input:valid {
+    color: green;
+}

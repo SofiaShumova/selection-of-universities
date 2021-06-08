@@ -1,31 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { v4 as uuid } from 'uuid';
 
 import { CheckedInput } from '../common';
 import styles from './list-inputs.module.css';
 
-const ListInputs = ({ data, label, height = '300px' }) => {
+const ListInputs = ({
+  label,
+  height = '300px',
+  defaultValue,
+  onChange = () => {},
+}) => {
+  const [value, setValue] = useState({});
+
+  useEffect(() => {
+    onChange({ disciplines: value });
+  }, [value]);
+
+  const list = useMemo(
+    () =>
+      defaultValue.map((item) => (
+        <li key={uuid()}>
+          <CheckedInput
+            label={item?.prop?.name}
+            defaultValue={item?.value}
+            onChange={(value) => {
+              setValue((prev) => ({
+                ...prev,
+                [item.prop._id]: { discipline: item.prop, value },
+              }));
+            }}
+          />
+        </li>
+      )),
+    [defaultValue.length]
+  );
+
   return (
     <div className={styles.box}>
       <label className={styles.label}>{label}:</label>
       <ul className={styles.list} style={{ height }}>
-        {data.map((item) => (
-          <li key={item._id}>
-            <CheckedInput label={item.name} />
-          </li>
-        ))}
+        {list}
       </ul>
     </div>
   );
 };
 
 ListInputs.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    })
-  ).isRequired,
   label: PropTypes.string,
   height: PropTypes.string,
 };

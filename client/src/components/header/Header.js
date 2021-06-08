@@ -1,13 +1,43 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { v4 as uuid } from 'uuid';
+
+import { userContext } from '../../contexts/auth-context';
 import { Link, PrivateLink } from './links';
 import { roles } from '../../routes/roles';
-
-import PropTypes from 'prop-types';
+import { schemes } from '../../pages/administration-page/schemes/schemes';
 
 import logo from './cap.png';
 import icon from './user.png';
+import arrow from './arrow.svg';
 
 import styles from './header.module.css';
+
+const AdministrationSection = () => {
+  const user = useContext(userContext);
+
+  return (
+    user?.role?.name === roles.admin && (
+      <div className={styles.administration}>
+        <div className={styles.administration__label}>
+          Администрирование
+          <img src={arrow} alt="arrow" className={styles.label__icon} />
+        </div>
+        <ul className={styles.administration__list}>
+          {schemes.map(({ name }) => (
+            <li key={uuid()} className={styles.administration__item}>
+              <PrivateLink
+                roles={[roles.admin]}
+                to={`/administration/${name.toLowerCase()}`}
+              >
+                {name}
+              </PrivateLink>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  );
+};
 
 const Header = () => {
   return (
@@ -16,9 +46,7 @@ const Header = () => {
       <nav className={styles.list}>
         <Link exact to="/" title="Главная" />
         <Link to="/selection" title="Подбор ВУЗов" />
-        <PrivateLink roles={[roles.admin]} to="/administration">
-          Администрирование
-        </PrivateLink>
+        <AdministrationSection />
         <PrivateLink roles={[roles.expert]} to="/assessment">
           Экспертная оценка
         </PrivateLink>
@@ -31,5 +59,4 @@ const Header = () => {
     </header>
   );
 };
-
 export default Header;

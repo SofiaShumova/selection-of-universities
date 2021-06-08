@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import arrowIcon from './arrow-down-sign-to-navigate.png';
@@ -26,17 +26,50 @@ const MultiplePreview = ({ items, removeItem }) => {
   );
 };
 
-const TemplateSelect = ({ label, preview, list }) => {
+const List = ({ data, onSelect }) => {
   return (
-    <div className={styles.box}>
+    <ul className={styles.list}>
+      {data.map((item) => (
+        <li
+          key={item._id}
+          className={styles.item}
+          onClick={() => {
+            onSelect(item);
+          }}
+        >
+          {item.name}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+const TemplateSelect = ({ label, preview, list, ...props }) => {
+  const [visibleList, setVisibleList] = useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setVisibleList(true)}
+      onMouseLeave={() => setVisibleList(false)}
+      className={styles.box}
+    >
       <label className={styles.label}>{label}:</label>
       <div className={styles.border_wrapper}>
-        <input type="checkbox" className={styles.checkbox} />
         <div className={styles.preview_block}>
           {preview}
-          <img src={arrowIcon} alt="arrow icon" className={styles.icon} />
+          <img
+            onBlur={() => console.log('blur')}
+            onClick={() => {
+              setVisibleList((prev) => !prev);
+            }}
+            src={arrowIcon}
+            alt="arrow icon"
+            className={`${styles.icon} ${
+              visibleList ? styles.icon_rotate : ''
+            }`}
+          />
         </div>
-        {list}
+        {visibleList && list}
       </div>
     </div>
   );
@@ -46,15 +79,21 @@ const MultipeSelect = ({
   label,
   data,
   onChange = () => {},
-  initialValue = [],
+  defaultValue = [],
+  ...props
 }) => {
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(defaultValue?.length ? defaultValue : []);
+  const [avalibleData, setAvalibleData] = useState([]);
+
+  useEffect(() => {
+    setAvalibleData(getData());
+    onChange(value);
+  }, [value, data]);
 
   const getData = () => {
-    if (!value.length) {
+    if (!value?.length) {
       return data;
     }
-
     const itemsId = value.map((item) => item._id);
     return data.filter((item) => !itemsId.includes(item._id));
   };
@@ -69,16 +108,14 @@ const MultipeSelect = ({
         value && <MultiplePreview items={value} removeItem={removeItem} />
       }
       list={
-        data.length && (
+        !!avalibleData.length && (
           <List
-            data={getData()}
-            onSelect={(item) => {
-              setValue((prev) => prev.concat(item));
-              onChange(value);
-            }}
+            data={avalibleData}
+            onSelect={(item) => setValue((prev) => prev.concat(item))}
           />
         )
       }
+      {...props}
     />
   );
 };
@@ -87,9 +124,9 @@ const SingleSelect = ({
   label,
   data,
   onChange = () => {},
-  initialValue = null,
+  defaultValue = null,
 }) => {
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(defaultValue);
 
   return (
     <TemplateSelect
@@ -112,20 +149,20 @@ const SingleSelect = ({
   );
 };
 
-const List = ({ data, onSelect }) => {
-  return (
-    <ul className={styles.list}>
-      {data.map((item) => (
-        <li
-          key={item._id}
-          className={styles.item}
-          onClick={() => onSelect(item)}
-        >
-          {item.name}
-        </li>
-      ))}
-    </ul>
-  );
+export { SingleSelect, MultipeSelect };
+
+// TODO: если 0 эелемнтов для выбора закрывать селект
+
+MultipeSelect.propTypes = {
+  label: PropTypes.string,
+  data: PropTypes.arrayOf(PropTypes.object),
+  onChange: PropTypes.func,
+  defaultValue: PropTypes.arrayOf(PropTypes.object),
 };
 
-export { SingleSelect, MultipeSelect };
+SingleSelect.propTypes = {
+  label: PropTypes.string,
+  data: PropTypes.arrayOf(PropTypes.object),
+  onChange: PropTypes.func,
+  defaultValue: PropTypes.object,
+};

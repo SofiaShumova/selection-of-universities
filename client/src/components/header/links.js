@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { authContext } from '../../contexts/auth-context';
+import { userContext } from '../../contexts/auth-context';
 
 import styles from './header.module.css';
 
@@ -17,7 +17,7 @@ const Link = ({ title, children, ...props }) => {
 };
 
 const PrivateLink = ({ roles = [], children, ...props }) => {
-  const user = useContext(authContext);
+  const user = useContext(userContext);
 
   if (!roles.length) {
     return (
@@ -28,7 +28,8 @@ const PrivateLink = ({ roles = [], children, ...props }) => {
   }
 
   return (
-    user && roles.includes(user.role) && <Link {...props}>{children}</Link>
+    user &&
+    roles.includes(user?.role?.name) && <Link {...props}>{children}</Link>
   );
 };
 
