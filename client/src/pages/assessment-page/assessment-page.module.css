@@ -1,0 +1,40 @@
+.wrapper {}
+
+.title,
+.subtitle {
+    text-align: center;
+}
+
+.assessment {}
+
+.category {}
+
+.category__title {
+    font-weight: 600;
+}
+
+.category label {
+    flex-basis: 40%;
+}
+
+.category input {
+    flex-basis: 20%;
+    flex-grow: 0;
+}
+
+.category input:invalid+span:after {
+    content: '✖';
+    padding-left: 5px;
+}
+
+.category input:valid+span:after {
+    content: '✓';
+    padding-left: 5px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+.warning {}

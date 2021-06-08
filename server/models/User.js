@@ -1,4 +1,5 @@
-const { Schema, model, Types } = require('mongoose');
+const bcrypt = require('bcrypt');
+const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema({
   name: {
@@ -19,10 +20,23 @@ const userSchema = new Schema({
     ref: 'City',
   },
   role: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: 'Role',
+  },
+  analysis: {
+    type: [{ type: Schema.Types.ObjectId, ref: 'Analysis' }],
+    default: [],
   },
 });
 
 const User = model('User', userSchema, 'User');
+User.comparePasswords = (foundPassword, hash) => {
+  return bcrypt.compareSync(foundPassword, hash);
+};
+
+User.createPassword = (password) => {
+  const salt = bcrypt.genSaltSync();
+  return bcrypt.hashSync(password, salt);
+};
 
 module.exports = User;

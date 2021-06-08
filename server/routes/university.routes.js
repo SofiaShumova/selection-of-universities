@@ -1,4 +1,6 @@
 const University = require('../models/University');
+const ExpertReview = require('../models/ExpertReview');
+
 const { Router } = require('express');
 const router = Router();
 
@@ -8,6 +10,25 @@ router.get('/', async (req, res) => {
       .populate('type')
       .populate('city');
     res.status(200).json(university);
+  } catch (e) {
+    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' });
+  }
+});
+
+router.get('/avalible', async (req, res) => {
+  try {
+    let reviews = await ExpertReview.find({});
+    reviews = reviews.map((r) => r.university.toString());
+
+    const university = await University.find({})
+      .populate('type')
+      .populate('city');
+
+    res.status(200).json(
+      university.filter(({ _id }) => {
+        return !reviews.includes(_id.toString());
+      })
+    );
   } catch (e) {
     res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' });
   }

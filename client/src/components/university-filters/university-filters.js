@@ -1,45 +1,41 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './university-filters.module.css';
 import { serviceContext } from '../../contexts/service-context';
 import { useRequest } from '../../hooks';
 
-import { MultipeSelect, SingleSelect, Checkbox } from '../common';
+import { MultipeSelect, SingleSelect, Checkbox, Button } from '../common';
 import ListInputs from '../list-of-checked-inputs';
 import Spinner from '../spinner';
 
 const UniversityFilters = ({ title, toggleFilter = () => {} }) => {
   const {
-    getCities,
-    getPrograms,
-    getDisciplines,
-    getFormsEducation,
-    getLevelsOfPreparation,
-    getTypesUniversity,
+    getAllCity,
+    getAllTrainingProgram,
+    getAllDiscipline,
+    getAllFormOfEducation,
+    getAllLevelOfPreparation,
+    getAllType,
   } = useContext(serviceContext);
 
-  const { data: cities, isLoading: loadingCities } = useRequest([], getCities);
+  const { data: cities, isLoading: loadingCities } = useRequest([], getAllCity);
   const { data: programs, isLoading: loadingPrograms } = useRequest(
     [],
-    getPrograms
+    getAllTrainingProgram
   );
-  const { data: disciplines, isLoading: loadingDisciplines } = useRequest(
+  const { data: dataDisciplines, isLoading: loadingDisciplines } = useRequest(
     [],
-    getDisciplines
+    getAllDiscipline
   );
   const { data: formsEducation, isLoading: loadingFormsEducation } = useRequest(
     [],
-    getFormsEducation
+    getAllFormOfEducation
   );
-  const {
-    data: levelsOfPreparation,
-    isLoading: loadingLevelsOfPreparation,
-  } = useRequest([], getLevelsOfPreparation);
-  const {
-    data: typesUniversity,
-    isLoading: loadingTypesUniversity,
-  } = useRequest([], getTypesUniversity);
+  const { data: levelsOfPreparation, isLoading: loadingLevelsOfPreparation } =
+    useRequest([], getAllLevelOfPreparation);
+  const { data: typesUniversity, isLoading: loadingTypesUniversity } =
+    useRequest([], getAllType);
 
   if (
     loadingCities ||
@@ -62,10 +58,34 @@ const UniversityFilters = ({ title, toggleFilter = () => {} }) => {
           toggleFilter({ city });
         }}
       />
-      <MultipeSelect label="Направления подготовки" data={programs} />
-      <ListInputs data={disciplines} label="Предметы" />
-      <MultipeSelect label="Форма обучения" data={formsEducation} />
-      <MultipeSelect label="Уровень подготовки" data={levelsOfPreparation} />
+      <MultipeSelect
+        label="Направления подготовки"
+        data={programs}
+        onChange={(trainingProgram) => {
+          toggleFilter({ trainingProgram });
+        }}
+      />
+      <ListInputs
+        defaultValue={dataDisciplines.map((prop) => ({ prop }))}
+        label="Предметы"
+        onChange={(obj) => {
+          toggleFilter(obj);
+        }}
+      />
+      <MultipeSelect
+        label="Форма обучения"
+        data={formsEducation}
+        onChange={(formOfEducation) => {
+          toggleFilter({ formOfEducation });
+        }}
+      />
+      <MultipeSelect
+        label="Уровень подготовки"
+        data={levelsOfPreparation}
+        onChange={(levelOfPreparation) => {
+          toggleFilter({ levelOfPreparation });
+        }}
+      />
       <SingleSelect
         label="Тип университета"
         data={typesUniversity}
@@ -75,15 +95,20 @@ const UniversityFilters = ({ title, toggleFilter = () => {} }) => {
       />
       <Checkbox
         label="Общежитие"
-        onChange={(dormitory) => {
-          toggleFilter({ dormitory });
+        onChange={({ target }) => {
+          toggleFilter({ dormitory: target.checked });
         }}
       />
-      {/* <Checkbox label="Бюджетные места" /> */}
+      <Checkbox
+        label="Бюджетные места"
+        onChange={({ target }) => {
+          toggleFilter({ count: target.checked });
+        }}
+      />
       <Checkbox
         label="Военная кафедра"
-        onChange={(militaryDepartment) => {
-          toggleFilter({ militaryDepartment });
+        onChange={({ target }) => {
+          toggleFilter({ militaryDepartment: target.checked });
         }}
       />
     </div>

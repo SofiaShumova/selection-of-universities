@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { components } from '../components';
 import { getComponent } from './get-component';
 import { useRequest } from '../../../hooks';
@@ -29,7 +29,7 @@ const ElementFormWithData = ({
   template: {
     input,
     prop,
-    data: { promise, displayKey, selectedKey },
+    data: { promise },
   },
 }) => {
   const Component = getComponent(input);
@@ -39,7 +39,7 @@ const ElementFormWithData = ({
     <div className={styles.box}>
       <Component
         data={data}
-        defaultValue={initialValue ?? ''}
+        defaultValue={initialValue}
         label={prop}
         onChange={handler}
       />
@@ -47,13 +47,28 @@ const ElementFormWithData = ({
   );
 };
 
-const Field = ({ data: [key, { input, data }], targetData }) => {
+const Field = ({
+  data: [key, { input, data, CustomComponent }],
+  targetData,
+}) => {
+  if (CustomComponent) {
+    return (
+      <CustomComponent
+        initialValue={targetData[key]}
+        prop={key}
+        data={data}
+        targetData={targetData}
+      />
+    );
+  }
   return input ? (
     data ? (
       <ElementFormWithData
         initialValue={targetData[key]}
         template={{ input, data, prop: key }}
-        handler={(value) => (targetData[key] = value._id)}
+        handler={(value) =>
+          (targetData[key] = Array.isArray(value) ? value : value?._id)
+        }
       />
     ) : (
       <ElementForm

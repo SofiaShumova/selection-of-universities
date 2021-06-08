@@ -6,6 +6,7 @@ import {
   SingleSelect,
   TextArea,
 } from '../../../components/common';
+import ListInputs from '../../../components/list-of-checked-inputs';
 import { components } from '../components';
 
 export function getComponent(name) {
@@ -16,6 +17,7 @@ export function getComponent(name) {
     file,
     textarea,
     checkbox,
+    listInputs,
   } = components;
   switch (name) {
     case singleSelect:
@@ -30,6 +32,8 @@ export function getComponent(name) {
       return TextArea;
     case checkbox:
       return Checkbox;
+    case listInputs:
+      return ListInputs;
     default:
       return null;
   }

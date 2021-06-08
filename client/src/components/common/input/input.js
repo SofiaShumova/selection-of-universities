@@ -8,6 +8,7 @@ const Input = ({ label, ...props }) => {
     <div className={styles.box}>
       {label && <label className={styles.label}>{label}:</label>}
       <input className={styles.input} {...props} />
+      <span></span>
     </div>
   );
 };

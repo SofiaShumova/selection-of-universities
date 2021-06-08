@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { TestService } from '../services/api';
+import { Service } from '../services/api';
 
 export const serviceContext = React.createContext();
 const { Provider } = serviceContext;
 
-export function ServiceProvider({ children, value = new TestService() }) {
-  const [service, setService] = useState(value);
+export function ServiceProvider({ children, value = new Service() }) {
+  const [service] = useState(value);
 
   return <Provider value={service}>{children}</Provider>;
 }

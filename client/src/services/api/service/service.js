@@ -1,62 +1,5 @@
-export default class Service {
-  _apiBase = 'http://localhost:5000/api';
-
-  getResourse = async (url) => {
-    const res = await fetch(`${this._apiBase}${url}`);
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url} received ${res.status}`);
-    }
-
-    return await res.json();
-  };
-
-  addResourse = async (url, data) => {
-    const res = await fetch(`${this._apiBase}${url}`, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url} received ${res.status}`);
-    }
-
-    return await res.ok;
-  };
-
-  updateResourse = async (url, data) => {
-    const res = await fetch(`${this._apiBase}${url}`, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url} received ${res.status}`);
-    }
-
-    return await res.ok;
-  };
-
-  deleteResourse = async (url) => {
-    const res = await fetch(`${this._apiBase}${url}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url} received ${res.status}`);
-    }
-
-    return await res.ok;
-  };
-
+import BaseService from '../base-service';
+export default class Service extends BaseService {
   getAllUniversity = async () => {
     return await this.getResourse(`/university/`);
   };
@@ -69,7 +12,6 @@ export default class Service {
       university
     );
   };
-
   removeUniversity = async (university) => {
     return await this.deleteResourse(`/university/${university._id}`);
   };
@@ -79,5 +21,62 @@ export default class Service {
   };
   getAllType = async () => {
     return await this.getResourse(`/type/`);
+  };
+  getAllUser = async () => {
+    return await this.getResourse(`/user/`);
+  };
+  getAllCriterion = async () => {
+    return await this.getResourse(`/criterion/`);
+  };
+  getAllExpertReview = async () => {
+    return await this.getResourse(`/expert-review/`);
+  };
+  getAllCategory = async () => {
+    return await this.getResourse(`/category/`);
+  };
+  getAllProfession = async () => {
+    return await this.getResourse(`/profession/`);
+  };
+  getAllDiscipline = async () => {
+    return await this.getResourse(`/discipline/`);
+  };
+  getAllTrainingProgram = async () => {
+    return await this.getResourse(`/training-program/`);
+  };
+  getAllLevelOfPreparation = async () => {
+    return await this.getResourse(`/level-of-preparation/`);
+  };
+  getAllBasisOfLearning = async () => {
+    return await this.getResourse(`/basis-of-learning/`);
+  };
+  getAllFormOfEducation = async () => {
+    return await this.getResourse(`/form-of-education/`);
+  };
+  getAllRequirements = async () => {
+    return await this.getResourse(`/admission-requirements/`);
+  };
+  createMethods = (tableName) => {
+    tableName = `/${tableName}/`;
+    const getAll = async () => await this.getResourse(tableName);
+    const add = async (item) => await this.addResourse(tableName, item);
+    const update = async (item) =>
+      await this.updateResourse(`${tableName}${item._id}`, item);
+    const remove = async (item) =>
+      await this.deleteResourse(`${tableName}${item._id}`);
+    return { getAll, add, update, remove };
+  };
+
+  createUser = async (user) => {
+    return await this.addResourse('/registration/', user);
+  };
+
+  addExpertReview = async (assessment) => {
+    return await this.addResourse('/expert-review', assessment);
+  };
+  getAvailableUniversity = async () => {
+    return await this.getResourse(`/university/avalible`);
+  };
+  addAnalysis = async (id, data) => {
+    return await this.addResourse(`/user/add-analysis/${id}`, data);
   };
 }

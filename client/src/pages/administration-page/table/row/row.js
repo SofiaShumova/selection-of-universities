@@ -11,7 +11,7 @@ const Row = ({ schema, item, onEdit, onRemove }) => {
     <tr className={styles.row}>
       {Object.entries(schema).map(([key, value]) => {
         return (
-          <td key={uuid()}>
+          <td className={styles.row__cell} key={uuid()}>
             <Value template={value} prop={key} item={item} />
           </td>
         );

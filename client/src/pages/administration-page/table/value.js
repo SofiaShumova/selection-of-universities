@@ -1,11 +1,14 @@
 import React from 'react';
 
 export const Value = ({ template, prop, item }) => {
-  const { display: Component, key } = template;
+  const { display: Component, key, formatDisplay = (str) => str } = template;
+  const value = formatDisplay(item?.[prop]?.[key] ?? item?.[prop] ?? 'null');
 
   return (
     <Component>
-      {(item?.[prop]?.[key] ?? item?.[prop] ?? 'null').toString()}
+      {Array.isArray(value)
+        ? value.map((item) => item?.name).join(', ')
+        : value.toString()}
     </Component>
   );
 };

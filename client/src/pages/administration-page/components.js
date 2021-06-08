@@ -5,4 +5,5 @@ export const components = {
   file: 'File',
   textarea: 'Textarea',
   checkbox: 'Checkbox',
+  listInputs: 'ListInputs',
 };

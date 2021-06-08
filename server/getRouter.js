@@ -1,27 +1,36 @@
 const { Router } = require('express');
 
-function getRouter(model) {
+function getRouter(model, get) {
   const router = Router();
 
-  router.get('/', async (req, res) => {
-    try {
-      const items = await model.find({});
-      res.status(200).json(items);
-    } catch (e) {
-      res
-        .status(500)
-        .json({ message: 'Что-то пошло не так, попробуйте снова' });
-    }
-  });
+  router.get(
+    '/',
+    get
+      ? get
+      : async (req, res) => {
+          try {
+            const items = await model.find({});
+            res.status(200).json(items);
+          } catch (error) {
+            res
+              .status(500)
+              .json({
+                message: 'Что-то пошло не так, попробуйте снова',
+                error,
+              });
+          }
+        }
+  );
 
   router.post('/', async (req, res) => {
     try {
       const item = new model(req.body);
-      console.log(req.body);
       await item.save();
       res.sendStatus(200);
-    } catch (e) {
-      res.status(500).json(e);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: 'Что-то пошло не так, попробуйте снова', error });
     }
   });
 
@@ -30,8 +39,10 @@ function getRouter(model) {
       await model.findOneAndUpdate({ _id: req.params.id }, req.body);
 
       res.sendStatus(200);
-    } catch (e) {
-      res.status(500).json(e);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: 'Что-то пошло не так, попробуйте снова', error });
     }
   });
 
@@ -39,8 +50,10 @@ function getRouter(model) {
     try {
       await model.findByIdAndDelete({ _id: req.params.id });
       res.sendStatus(200);
-    } catch (e) {
-      res.status(500).json(e);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: 'Что-то пошло не так, попробуйте снова', error });
     }
   });
   return router;

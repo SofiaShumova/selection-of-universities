@@ -1,0 +1,31 @@
+.profile {}
+
+.profile__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.description {
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.description__item {
+    margin: 10px 0;
+}
+
+.actions {}
+
+.title {
+    text-align: center;
+}
+
+.analysis {}
+
+.analysis__wrapper {}
+
+.analysis__warning {
+    color: #7A7A7A;
+    text-align: center;
+}
